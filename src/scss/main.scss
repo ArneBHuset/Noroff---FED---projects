@@ -1,0 +1,16 @@
+$primary: #bc2a20;
+$secondary-color: #122405;
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+$custom-color-1: #051224;
+$custom-color-2: #071934;
+
+.background-primary {
+     background-color: $custom-color-1;
+}
+
+.background-secondary {
+     background-color: $custom-color-2;
+}
