@@ -1,16 +1,30 @@
+$offcanvas-box-shadow: 5px 0px 5px 5px rgba(0, 0, 0, 0.5);
+$offcanvas-bg-color: rgb(224, 224, 224);
+// $offcanvas-color: ;
+// $offcanvas-transition-duration: 0.3s;
+$offcanvas-horizontal-width: 80vw;
+
 @import "./main.scss";
+@import "./partials/SoMeCard.scss";
 
 .custom-sidebar {
-     border-right: 1px solid $primary;
+     border-right: 2.5px solid $primary;
+     max-width: 25vw;
 }
 
-@media (max-width: 720px) {
+// .height-fit {
+//      height: 80vh;
+// }
+
+@media (max-width: 759px) {
      .mobile-sidebar {
-          max-width: 1px;
+          width: 20px;
+          border-radius: 20px;
+          box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.3);
      }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 760px) {
      #offcanvasNavbar {
           transform: translateX(0%);
           visibility: visible;
@@ -26,6 +40,11 @@
 .custom-navbar-toggler {
      @extend .navbar-toggler;
      border: none;
-     padding: 0;
-     margin: 0;
+     padding-left: 20px;
+     margin-right: 50px;
+}
+
+.material-symbols-outlined {
+     color: $primary;
+     font-size: 32px !important;
 }
