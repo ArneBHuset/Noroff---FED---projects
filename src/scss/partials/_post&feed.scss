@@ -1,0 +1,50 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+$offcanvas-box-shadow: 5px 0px 5px 5px rgba(0, 0, 0, 0.5);
+$offcanvas-bg-color: rgb(224, 224, 224);
+// $offcanvas-color: ;
+// $offcanvas-transition-duration: 0.3s;
+$offcanvas-horizontal-width: 80vw;
+
+.custom-sidebar {
+  border-right: 2px solid $primary;
+  max-width: 25vw;
+}
+
+// .height-fit {
+//      height: 80vh;
+// }
+
+@media (max-width: 759px) {
+  .mobile-sidebar {
+    width: 10px;
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 760px) {
+  #offcanvasNavbar {
+    transform: translateX(0%);
+    visibility: visible;
+    height: 100%;
+    position: relative;
+  }
+
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+.custom-navbar-toggler {
+  @extend .navbar-toggler;
+  border: none;
+}
+
+.material-symbols-outlined {
+  color: $primary;
+  font-size: 32px !important;
+  position: relative;
+  padding-bottom: 95vh;
+  padding-left: 9px;
+}

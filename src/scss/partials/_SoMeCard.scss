@@ -1,6 +1,5 @@
-@import "../main.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-// Bootstrap default
 $card-spacer-y: $spacer;
 $card-spacer-x: $spacer;
 $card-title-spacer-y: $spacer * 0.5;
@@ -15,23 +14,14 @@ $card-cap-padding-y: $card-spacer-y * 0.5;
 $card-cap-padding-x: $card-spacer-x;
 $card-cap-bg: rgba(var(--#{$prefix}body-color-rgb), 0.03);
 $card-cap-color: null;
-$card-height: null;
+
 $card-color: null;
-$card-bg: var(--#{$prefix}body-bg);
+$card-bg: rgb(237, 234, 234, 0.1);
 $card-img-overlay-padding: $spacer;
 $card-group-margin: $grid-gutter-width * 0.5;
 
-// My customs
-$card-bg: none;
-$card-color: white;
-
 .custom-card {
-     @extend .card;
-     margin-left: auto;
-     margin-right: auto;
-     width: 300px;
-}
+  @extend .card;
 
-.login-card-border {
-     border-top: 3px solid rgba($primary, 0.8);
+  min-width: 300px;
 }

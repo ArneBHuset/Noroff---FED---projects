@@ -1,227 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-     <head>
-          <meta charset="UTF-8" />
-          <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1.0"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/css/main.css" />
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="./src/js/index.mjs"></script>
+  </head>
+  <body class="background-primary">
+    <main class="container vh-100">
+      <div class="row h-100">
+        <div
+          class="col-12 d-flex justify-content-center align-items-center mt-5"
+        >
+          <img
+            src="./src/img/png/logo-color.png"
+            height="280"
+            width="280"
+            class="rounded-circle size-md-2"
           />
-          <title>Document</title>
-          <link rel="stylesheet" href="./dist/css/index.css" />
-          <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-          <script type="module" src="./src/js/index.mjs"></script>
-     </head>
-     <body class="background-primary">
-          <main class="container vh-100">
-               <div class="row h-100">
-                    <div
-                         class="col-12 d-flex justify-content-center align-items-center mt-5"
+        </div>
+
+        <div class="col-12 w-100">
+          <div class="custom-card text-center">
+            <div class="card-body login-card-border mt-4">
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="collapse show multi-collapse"
+                    id="multiCollapseExample1"
+                  >
+                    <!-- Log in form -->
+                    <h5 class="card-title">Log in</h5>
+                    <form
+                      class="row g-3 needs-validation"
+                      type="submit"
+                      action="./post&feed/post&feed.html"
+                      method="get"
+                      novalidate
                     >
-                         <img
-                              src="./src/img/png/logo-color.png"
-                              height="280"
-                              width="280"
-                              class="rounded-circle size-md-2"
-                         />
+                      <div class="mb-3">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="logInEmail"
+                          placeholder="name@example.noroff"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please enter valid email
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="logInPassword"
+                          placeholder="Password"
+                          required
+                        />
+                        <div class="invalid-feedback">
+                          Please enter correct password
+                          <button class="btn">Forgot Password?</button>
+                        </div>
+                      </div>
+
+                      <div class="col-12 my-4">
+                        <button class="btn btn-primary" type="submit">
+                          Log in
+                        </button>
+                        <a href="./post&feed/post&feed.html">Cheatbtn</a>
+                      </div>
+                    </form>
+                    <div class="row">
+                      <div class="col-5">
+                        <hr />
+                      </div>
+                      <div class="col-2">Or</div>
+                      <div class="col-5">
+                        <hr />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- SIGN UP SECTION -->
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <button
+                    class="btn btn-primary my-4"
+                    id="log-in-btn"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target=".multi-collapse"
+                    aria-expanded="false"
+                    aria-controls="multiCollapseExample1 multiCollapseExample2"
+                  >
+                    Log in
+                  </button>
+                  <h5 class="card-title">Create account</h5>
+                  <form class="row g-3 needs-validation" novalidate>
+                    <div class="mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="signUpUserName"
+                        placeholder="User name"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter your user name
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="signUpEmail"
+                        placeholder="New email"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter valid email
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="signUpPassword"
+                        placeholder="Password"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter correct password
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="signUpConfirmPassword"
+                        placeholder="Confirm password"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Please enter correct password
+                      </div>
                     </div>
 
-                    <div class="col-12 w-100">
-                         <div class="custom-card text-center">
-                              <div class="card-body login-card-border mt-4">
-                                   <div class="row">
-                                        <div class="col">
-                                             <div
-                                                  class="collapse show multi-collapse"
-                                                  id="multiCollapseExample1"
-                                             >
-                                                  <!-- Log in form -->
-                                                  <h5 class="card-title">
-                                                       Log in
-                                                  </h5>
-                                                  <form
-                                                       class="row g-3 needs-validation"
-                                                       type="submit"
-                                                       action="./post&feed/post&feed.html"
-                                                       method="get"
-                                                       novalidate
-                                                  >
-                                                       <div class="mb-3">
-                                                            <input
-                                                                 type="email"
-                                                                 class="form-control"
-                                                                 id=""
-                                                                 placeholder="name@example.noroff"
-                                                                 required
-                                                            />
-                                                            <div
-                                                                 class="invalid-feedback"
-                                                            >
-                                                                 Please enter
-                                                                 valid email
-                                                            </div>
-                                                       </div>
-                                                       <div class="mb-3">
-                                                            <input
-                                                                 type="password"
-                                                                 class="form-control"
-                                                                 id=""
-                                                                 placeholder="Password"
-                                                                 required
-                                                            />
-                                                            <div
-                                                                 class="invalid-feedback"
-                                                            >
-                                                                 Please enter
-                                                                 correct
-                                                                 password
-                                                                 <button
-                                                                      class="btn"
-                                                                 >
-                                                                      Forgot
-                                                                      Password?
-                                                                 </button>
-                                                            </div>
-                                                       </div>
-
-                                                       <div class="col-12 my-4">
-                                                            <button
-                                                                 class="btn btn-primary"
-                                                                 type="submit"
-                                                            >
-                                                                 Log in
-                                                            </button>
-                                                            <a
-                                                                 href="./post&feed/post&feed.html"
-                                                                 >Cheatbtn</a
-                                                            >
-                                                       </div>
-                                                  </form>
-                                                  <div class="row">
-                                                       <div class="col-5">
-                                                            <hr />
-                                                       </div>
-                                                       <div class="col-2">
-                                                            Or
-                                                       </div>
-                                                       <div class="col-5">
-                                                            <hr />
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                   </div>
-
-                                   <div class="col">
-                                        <div
-                                             class="collapse multi-collapse"
-                                             id="multiCollapseExample2"
-                                        >
-                                             <button
-                                                  class="btn btn-primary my-4"
-                                                  id="log-in-btn"
-                                                  type="button"
-                                                  data-bs-toggle="collapse"
-                                                  data-bs-target=".multi-collapse"
-                                                  aria-expanded="false"
-                                                  aria-controls="multiCollapseExample1 multiCollapseExample2"
-                                             >
-                                                  Log in
-                                             </button>
-                                             <h5 class="card-title">
-                                                  Create account
-                                             </h5>
-                                             <form
-                                                  class="row g-3 needs-validation"
-                                                  novalidate
-                                             >
-                                                  <div class="mb-3">
-                                                       <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id=""
-                                                            placeholder="User name"
-                                                            required
-                                                       />
-                                                       <div
-                                                            class="invalid-feedback"
-                                                       >
-                                                            Please enter your
-                                                            user name
-                                                       </div>
-                                                  </div>
-                                                  <div class="mb-3">
-                                                       <input
-                                                            type="email"
-                                                            class="form-control"
-                                                            id=""
-                                                            placeholder="New email"
-                                                            required
-                                                       />
-                                                       <div
-                                                            class="invalid-feedback"
-                                                       >
-                                                            Please enter valid
-                                                            email
-                                                       </div>
-                                                  </div>
-                                                  <div class="mb-3">
-                                                       <input
-                                                            type="password"
-                                                            class="form-control"
-                                                            id=""
-                                                            placeholder="Password"
-                                                            required
-                                                       />
-                                                       <div
-                                                            class="invalid-feedback"
-                                                       >
-                                                            Please enter correct
-                                                            password
-                                                       </div>
-                                                  </div>
-                                                  <div class="mb-3">
-                                                       <input
-                                                            type="password"
-                                                            class="form-control"
-                                                            id=""
-                                                            placeholder="Confirm password"
-                                                            required
-                                                       />
-                                                       <div
-                                                            class="invalid-feedback"
-                                                       >
-                                                            Please enter correct
-                                                            password
-                                                       </div>
-                                                  </div>
-
-                                                  <div class="col-12 my-4">
-                                                       <button
-                                                            class="btn btn-primary"
-                                                            type="submit"
-                                                       >
-                                                            Sign up!
-                                                       </button>
-                                                  </div>
-                                             </form>
-                                        </div>
-                                   </div>
-
-                                   <button
-                                        class="btn btn-primary my-4"
-                                        id="sign-up-btn"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target=".multi-collapse"
-                                        aria-expanded="false"
-                                        aria-controls="multiCollapseExample1 multiCollapseExample2"
-                                   >
-                                        Sign Up
-                                   </button>
-                              </div>
-                         </div>
+                    <div class="col-12 my-4">
+                      <button class="btn btn-primary" type="submit">
+                        Sign up!
+                      </button>
                     </div>
-               </div>
-          </main>
-     </body>
+                  </form>
+                </div>
+              </div>
+
+              <button
+                class="btn btn-primary my-4"
+                id="sign-up-btn"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target=".multi-collapse"
+                aria-expanded="false"
+                aria-controls="multiCollapseExample1 multiCollapseExample2"
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

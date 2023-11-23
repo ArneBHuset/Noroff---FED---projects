@@ -1,10 +1,12 @@
-console.log("Hello world");
+import { validateBootstrapForms } from "./utilities/forms.mjs";
+
+validateBootstrapForms();
 
 function dynamicSidebar() {
-     var footerHeight = document.querySelector("footer").offsetHeight;
-     var sidebar = document.querySelector(".mobile-sidebar");
-     sidebar.style.height = `calc(100vh - ${footerHeight}px)`;
-     console.log("Footer height is:", footerHeight, "px");
+  var footerHeight = document.querySelector("footer").offsetHeight;
+  var sidebar = document.querySelector(".mobile-sidebar");
+  sidebar.style.height = `calc(100vh - ${footerHeight}px)`;
+  console.log("Footer height is:", footerHeight, "px");
 }
 
 dynamicSidebar();

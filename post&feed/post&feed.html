@@ -1,247 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-     <head>
-          <meta charset="UTF-8" />
-          <meta
-               name="viewport"
-               content="width=device-width, initial-scale=1.0"
-          />
-          <title>Post&Feed page</title>
-          <link rel="stylesheet" href="../dist/css/post&feed.css" />
-          <link
-               rel="stylesheet"
-               href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-          />
-          <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-          <script type="module" src="../src/js/post&feed.mjs"></script>
-     </head>
-     <body>
-          <div>
-               <header>
-                    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                         <div class="container-fluid">
-                              <a class="navbar-brand" href="../index.html">
-                                   <img
-                                        src="../src/img/png/logo-no-background.png"
-                                        height="80"
-                                        width="auto"
-                                        alt="Page logo"
-                                   />
-                              </a>
-                              <button
-                                   class="navbar-toggler"
-                                   type="button"
-                                   data-bs-toggle="collapse"
-                                   data-bs-target="#navbarSupportedContent"
-                                   aria-controls="navbarSupportedContent"
-                                   aria-expanded="false"
-                                   aria-label="Toggle navigation"
-                              >
-                                   <span class="navbar-toggler-icon"></span>
-                              </button>
-                              <div
-                                   class="collapse navbar-collapse"
-                                   id="navbarSupportedContent"
-                              >
-                                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                        <li class="nav-item">
-                                             <a
-                                                  class="nav-link active"
-                                                  aria-current="page"
-                                                  href="#"
-                                                  >Home</a
-                                             >
-                                        </li>
-                                        <li class="nav-item">
-                                             <a class="nav-link" href="#"
-                                                  >Link</a
-                                             >
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                             <a
-                                                  class="nav-link dropdown-toggle"
-                                                  href="#"
-                                                  role="button"
-                                                  data-bs-toggle="dropdown"
-                                                  aria-expanded="false"
-                                             >
-                                                  Dropdown
-                                             </a>
-                                             <ul class="dropdown-menu">
-                                                  <li>
-                                                       <a
-                                                            class="dropdown-item"
-                                                            href="#"
-                                                            >Action</a
-                                                       >
-                                                  </li>
-                                                  <li>
-                                                       <a
-                                                            class="dropdown-item"
-                                                            href="#"
-                                                            >Another action</a
-                                                       >
-                                                  </li>
-                                                  <li>
-                                                       <hr
-                                                            class="dropdown-divider"
-                                                       />
-                                                  </li>
-                                                  <li>
-                                                       <a
-                                                            class="dropdown-item"
-                                                            href="#"
-                                                            >Something else
-                                                            here</a
-                                                       >
-                                                  </li>
-                                             </ul>
-                                        </li>
-                                        <li class="nav-item"></li>
-                                   </ul>
-                                   <form class="d-flex" role="search">
-                                        <input
-                                             class="form-control me-2"
-                                             type="search"
-                                             placeholder="Search"
-                                             aria-label="Search"
-                                        />
-                                        <button
-                                             class="btn btn-outline-success"
-                                             type="submit"
-                                        >
-                                             Search
-                                        </button>
-                                   </form>
-                              </div>
-                         </div>
-                    </nav>
-               </header>
-               <main class="container-fluid ps-0 w-100 h-100">
-                    <div class="row mx-0">
-                         <div class="col-3 mobile-sidebar custom-sidebar p-0">
-                              <button
-                                   class="custom-navbar-toggler"
-                                   type="button"
-                                   data-bs-toggle="offcanvas"
-                                   data-bs-target="#offcanvasNavbar"
-                                   aria-controls="offcanvasNavbar"
-                                   aria-label="Toggle navigation"
-                              >
-                                   <span class="material-symbols-outlined"
-                                        >sort</span
-                                   >
-                              </button>
-                              <nav
-                                   class="navbar bg-body-tertiary h-100 p-0 text-center"
-                              >
-                                   <div
-                                        class="offcanvas offcanvas-start text-center"
-                                        tabindex="-1"
-                                        id="offcanvasNavbar"
-                                        aria-labelledby="offcanvasNavbarLabel"
-                                   >
-                                        <div
-                                             class="offcanvas-header text-center"
-                                        >
-                                             <h5
-                                                  class="offcanvas-title"
-                                                  id="offcanvasNavbarLabel"
-                                             >
-                                                  FILTER
-                                             </h5>
-                                        </div>
-                                        <div class="offcanvas-body">
-                                             <ul
-                                                  class="navbar-nav justify-content-end flex-grow-1"
-                                             ></ul>
-                                             <form
-                                                  class="d-flex mt-3"
-                                                  role="search"
-                                             >
-                                                  <input
-                                                       class="form-control me-2"
-                                                       type="search"
-                                                       placeholder="Search"
-                                                       aria-label="Search"
-                                                  />
-                                                  <button
-                                                       class="btn btn-outline-success"
-                                                       type="submit"
-                                                  >
-                                                       Search
-                                                  </button>
-                                             </form>
-                                        </div>
-                                   </div>
-                              </nav>
-                         </div>
-
-                         <div class="col-9">
-                              <div class="container">
-                                   <div class="row">
-                                        <div class="col-12">
-                                             <div class="container-fluid mb-5">
-                                                  <div class="row">
-                                                       <div
-                                                            class="col-12 col-md-6"
-                                                       >
-                                                            Post
-                                                       </div>
-
-                                                       <div
-                                                            class="col-12 col-md-6"
-                                                       >
-                                                            Postss
-                                                       </div>
-                                                       <div class="col-4">
-                                                            <button
-                                                                 class="btn btn-primary"
-                                                            ></button>
-                                                       </div>
-                                                       <div class="col-4">
-                                                            <button
-                                                                 class="btn btn-primary"
-                                                            ></button>
-                                                       </div>
-                                                       <div class="col-4">
-                                                            <button
-                                                                 class="btn btn-primary"
-                                                            ></button>
-                                                       </div>
-                                                  </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                             <div class="custom-card">
-                                                  <div class="card-header">
-                                                       Featured
-                                                  </div>
-                                                  <div class="card-body">
-                                                       <span
-                                                            ><img
-                                                                 src="../src/img/Page1backG.png"
-                                                                 class="card-img"
-                                                                 alt="..."
-                                                                 width=""
-                                                                 height=""
-                                                       /></span>
-                                                  </div>
-                                                  <div
-                                                       class="card-footer text-body-secondary"
-                                                  >
-                                                       2 days ago
-                                                  </div>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </main>
-               <footer class="w-100 bg-secondary">
-                    This be the footer section
-               </footer>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post&Feed page</title>
+    <link rel="stylesheet" href="../dist/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../src/js/post&feed.mjs"></script>
+  </head>
+  <body>
+    <div>
+      <header class="mb-2">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand ms-4 ms-md-5" href="../index.html">
+              <img
+                src="../src/img/png/logo-no-background.png"
+                height="80"
+                width="auto"
+                alt="Page logo"
+                class="ms-md-5 ps-md-1"
+              />
+            </a>
+            <button
+              class="navbar-toggler me-3"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-md-5 ps-md-5 ms-4">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active ms-md-5"
+                    aria-current="page"
+                    href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link ms-md-5" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle ms-md-5"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="#">Action</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Another action</a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="nav-item me-md-5 ms-4">
+                <button class="btn btn-primary">Log out</button>
+              </div>
+            </div>
           </div>
-     </body>
+        </nav>
+      </header>
+      <main class="container-fluid ps-0 w-100 h-100">
+        <div class="row mx-0">
+          <div class="col-3 mobile-sidebar custom-sidebar p-0">
+            <button
+              class="custom-navbar-toggler h-100"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar"
+              aria-controls="offcanvasNavbar"
+              aria-label="Toggle navigation"
+            >
+              <span class="material-symbols-outlined">sort</span>
+            </button>
+            <nav class="navbar bg-body-tertiary h-100 p-0 text-center">
+              <div
+                class="offcanvas offcanvas-start text-center"
+                tabindex="-1"
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+              >
+                <div class="offcanvas-header text-center">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                    FILTER
+                  </h5>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1"></ul>
+                  <form class="d-flex mt-3" role="search">
+                    <input
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                      Search
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <div class="col-9">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="container-fluid mb-5">
+                    <div class="row">
+                      <div class="col-1 mt-5">
+                        <img src="../src/img/Page1backG.png" height="30" />
+                      </div>
+                      <form
+                        class="container needs-validation col-11"
+                        novalidate
+                      >
+                        <div class="mb-3 w-50">
+                          <label for="titleInput" class="form-label"
+                            >Title</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="titleInput"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Please provide a title.
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="postTextarea" class="form-label"
+                            >Post</label
+                          >
+                          <textarea
+                            class="form-control"
+                            id="postTextarea"
+                            rows="3"
+                            required
+                          ></textarea>
+                          <div class="invalid-feedback">
+                            Please provide the content for the post.
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="fileInput" class="form-label"
+                            >Upload File/Picture/Video</label
+                          >
+                          <input
+                            type="file"
+                            class="form-control"
+                            id="fileInput"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Please upload a file.
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="tagsInput" class="form-label">Tags</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="tagsInput"
+                            placeholder="Add tags separated by commas"
+                            required
+                          />
+                          <div class="invalid-feedback">
+                            Please add at least one tag.
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </form>
+                      <div class="col-4">
+                        <button class="btn btn-primary">Options</button>
+                      </div>
+                      <div class="col-4">
+                        <button class="btn btn-primary">Options</button>
+                      </div>
+                      <div class="col-4">
+                        <button class="btn btn-primary">Options</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="custom-card">
+                    <div class="card-header">Featured</div>
+                    <div class="card-body">
+                      <span
+                        ><img
+                          src="../src/img/Page1backG.png"
+                          class="card-img"
+                          alt="..."
+                          width=""
+                          height=""
+                      /></span>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                      2 days ago
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="w-100 bg-secondary">This be the footer section</footer>
+    </div>
+  </body>
 </html>
