@@ -100,8 +100,14 @@
                     Log in
                   </button>
                   <h5 class="card-title">Create account</h5>
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form
+                    class="row g-3 needs-validation"
+                    method="post"
+                    action="./post&feed/post&feed.html"
+                    novalidate
+                  >
                     <div class="mb-3">
+                      <div id="debugOutput"></div>
                       <input
                         type="text"
                         class="form-control"
@@ -118,23 +124,25 @@
                         type="email"
                         class="form-control"
                         id="signUpEmail"
-                        placeholder="New email"
+                        placeholder="noroff.no / stud.noroff.no"
                         required
                       />
-                      <div class="invalid-feedback">
-                        Please enter valid email
-                      </div>
+                      <div
+                        class="invalid-feedback"
+                        id="invalidEmailFeedback"
+                      ></div>
                     </div>
                     <div class="mb-3">
                       <input
                         type="password"
                         class="form-control"
                         id="signUpPassword"
-                        placeholder="Password"
+                        minlength="8"
+                        placeholder="New password"
                         required
                       />
                       <div class="invalid-feedback">
-                        Please enter correct password
+                        Minimum 8 character password
                       </div>
                     </div>
                     <div class="mb-3">
@@ -145,14 +153,19 @@
                         placeholder="Confirm password"
                         required
                       />
-                      <div class="invalid-feedback">
-                        Please enter correct password
-                      </div>
+                      <div
+                        class="invalid-feedback"
+                        id="passwordConfirmFeedback"
+                      ></div>
                     </div>
 
                     <div class="col-12 my-4">
-                      <button class="btn btn-primary" type="submit">
-                        Sign up!
+                      <button
+                        class="btn btn-primary"
+                        id="sign-up-btn"
+                        type="submit"
+                      >
+                        Real Sign up!
                       </button>
                     </div>
                   </form>
@@ -161,7 +174,7 @@
 
               <button
                 class="btn btn-primary my-4"
-                id="sign-up-btn"
+                id="collapsable-btn"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target=".multi-collapse"
