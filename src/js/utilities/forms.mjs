@@ -1,7 +1,13 @@
-// Default bootstrap validation is used and expanded to include password confirmation, confirmation of email
-// Containting neseccary values and creating a Json object of the data.
 "use strict";
 
+let formDataCallback = null;
+
+// Callback of the from data
+function validatedFormData(callback) {
+  formDataCallback = callback;
+}
+
+// From validation section
 function validateBootstrapForms() {
   const forms = document.querySelectorAll(".needs-validation");
 
@@ -9,14 +15,15 @@ function validateBootstrapForms() {
     form.addEventListener(
       "submit",
       (event) => {
-        // NB!!!! prevent defualt for testing in console only, will stop form submisson
+        // Prevent the default form submission for testing!!
         event.preventDefault();
-        // NB!!!! prevent defualt for testing in console only, will stop form submisson
+        // Prevent the default form submission for testing!!
         const emailInput = document.getElementById("signUpEmail");
         const chosenEmail = emailInput.value;
         const isNoroffEmail = /@(stud\.noroff\.no|noroff\.no)$/.test(
           chosenEmail
         );
+
         if (!isNoroffEmail) {
           emailInput.setCustomValidity(
             "Email must contain stud.noroff.no or noroff.no"
@@ -29,6 +36,7 @@ function validateBootstrapForms() {
         const confirmPassword = document.getElementById(
           "signUpConfirmPassword"
         ).value;
+
         if (password !== confirmPassword) {
           document
             .getElementById("signUpConfirmPassword")
@@ -40,24 +48,25 @@ function validateBootstrapForms() {
         }
 
         if (!form.checkValidity()) {
-          event.preventDefault();
           event.stopPropagation();
           form.classList.add("was-validated");
         } else {
           form.classList.add("was-validated");
 
           const userName = document.getElementById("signUpUserName").value;
-          const userData = { userName, email: chosenEmail, password };
-          const userJSON = JSON.stringify(userData);
-          validatedFormData(userData);
-          console.log("Forms.mjs:", userJSON);
+          const userData = { name: userName, email: chosenEmail, password };
+          if (formDataCallback) {
+            formDataCallback(userData);
+          }
+          // Do i need it stringified?
+          // const userJSON = JSON.stringify(userData);
+          // console.log("Forms.mjs (stringified):", userJSON);
+          // console.log("Froms.mjs normal", userData);
         }
       },
       false
     );
   });
 }
-function validatedFormData(data) {}
-export { validateBootstrapForms };
 
-export { validatedFormData };
+export { validateBootstrapForms, validatedFormData };

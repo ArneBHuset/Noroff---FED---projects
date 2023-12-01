@@ -35,6 +35,7 @@
                     <h5 class="card-title">Log in</h5>
                     <form
                       class="row g-3 needs-validation"
+                      autocomplete="on"
                       type="submit"
                       action="./post&feed/post&feed.html"
                       method="get"
@@ -44,6 +45,7 @@
                         <input
                           type="email"
                           class="form-control"
+                          autocomplete="email"
                           id="logInEmail"
                           placeholder="name@example.noroff"
                           required
@@ -55,6 +57,7 @@
                       <div class="mb-3">
                         <input
                           type="password"
+                          autocomplete="current-password"
                           class="form-control"
                           id="logInPassword"
                           placeholder="Password"
@@ -102,6 +105,7 @@
                   <h5 class="card-title">Create account</h5>
                   <form
                     class="row g-3 needs-validation"
+                    autocomplete="on"
                     method="post"
                     action="./post&feed/post&feed.html"
                     novalidate
@@ -111,6 +115,8 @@
                       <input
                         type="text"
                         class="form-control"
+                        autocomplete="name"
+                        value="test_a33"
                         id="signUpUserName"
                         placeholder="User name"
                         required
@@ -122,19 +128,22 @@
                     <div class="mb-3">
                       <input
                         type="email"
+                        autocomplete="email"
+                        value="arne33@noroff.no"
                         class="form-control"
                         id="signUpEmail"
                         placeholder="noroff.no / stud.noroff.no"
                         required
                       />
-                      <div
-                        class="invalid-feedback"
-                        id="invalidEmailFeedback"
-                      ></div>
+                      <div class="invalid-feedback" id="invalidEmailFeedback">
+                        Please enter correct email
+                      </div>
                     </div>
                     <div class="mb-3">
                       <input
                         type="password"
+                        autocomplete="new-password"
+                        value="12345678"
                         class="form-control"
                         id="signUpPassword"
                         minlength="8"
@@ -148,6 +157,8 @@
                     <div class="mb-3">
                       <input
                         type="password"
+                        autocomplete="new-password"
+                        value="12345678"
                         class="form-control"
                         id="signUpConfirmPassword"
                         placeholder="Confirm password"
@@ -156,7 +167,9 @@
                       <div
                         class="invalid-feedback"
                         id="passwordConfirmFeedback"
-                      ></div>
+                      >
+                        Passwords does not match
+                      </div>
                     </div>
 
                     <div class="col-12 my-4">
