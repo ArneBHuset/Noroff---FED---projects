@@ -1,12 +1,23 @@
-import { retrieveApiToken } from "./utilities/postHandling.mjs";
+import { retrieveApiPostData } from "./utilities/postHandling.mjs";
+import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
 
-retrieveApiToken();
+retrieveApiPostData();
+dynamicallyInsertedPosts();
 
-function dynamicSidebar() {
-  var footerHeight = document.querySelector("footer").offsetHeight;
-  var sidebar = document.querySelector(".mobile-sidebar");
-  sidebar.style.height = `calc(100vh - ${footerHeight}px)`;
-  console.log("Footer height is:", footerHeight, "px");
-}
+document.addEventListener("DOMContentLoaded", function () {
+  function dynamicSidebar() {
+    var footerHeight = document.querySelector("footer").offsetHeight;
+    var sidebar = document.querySelector(".mobile-sidebar");
+    sidebar.style.height = `calc(100vh - ${footerHeight}px)`;
+    console.log("Footer height is:", footerHeight, "px");
+  }
+  dynamicSidebar();
 
-dynamicSidebar();
+  // >>>>DEFAULT BOOTSTRAP POPOVER LOGICK<<<<<<
+  const popoverTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="popover"]'
+  );
+  const popoverList = [...popoverTriggerList].map(
+    (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+  );
+});

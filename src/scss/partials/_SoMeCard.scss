@@ -16,12 +16,12 @@ $card-cap-bg: rgba(var(--#{$prefix}body-color-rgb), 0.03);
 $card-cap-color: null;
 
 $card-color: null;
-$card-bg: rgb(237, 234, 234, 0.1);
+$card-bg: rgba(239, 0, 0, 0.1);
 $card-img-overlay-padding: $spacer;
 $card-group-margin: $grid-gutter-width * 0.5;
 
 .custom-card {
   @extend .card;
-
+  width: 90%;
   min-width: 300px;
 }
