@@ -35,10 +35,11 @@
                     <h5 class="card-title">Log in</h5>
                     <form
                       class="row g-3 needs-validation"
+                      id="loginForm"
                       autocomplete="on"
                       type="submit"
                       action="./post&feed/post&feed.html"
-                      method="get"
+                      method="post"
                       novalidate
                     >
                       <div class="mb-3">
@@ -48,6 +49,7 @@
                           autocomplete="email"
                           id="logInEmail"
                           placeholder="name@example.noroff"
+                          value="arne@noroff.no"
                           required
                         />
                         <div class="invalid-feedback">
@@ -61,6 +63,7 @@
                           class="form-control"
                           id="logInPassword"
                           placeholder="Password"
+                          value="12345678"
                           required
                         />
                         <div class="invalid-feedback">
@@ -105,6 +108,7 @@
                   <h5 class="card-title">Create account</h5>
                   <form
                     class="row g-3 needs-validation"
+                    id="signUpForm"
                     autocomplete="on"
                     method="post"
                     action="./post&feed/post&feed.html"
@@ -116,7 +120,7 @@
                         type="text"
                         class="form-control"
                         autocomplete="name"
-                        value="test_a33"
+                        value="test_a"
                         id="signUpUserName"
                         placeholder="User name"
                         required
@@ -129,7 +133,7 @@
                       <input
                         type="email"
                         autocomplete="email"
-                        value="arne33@noroff.no"
+                        value="arne@noroff.no"
                         class="form-control"
                         id="signUpEmail"
                         placeholder="noroff.no / stud.noroff.no"

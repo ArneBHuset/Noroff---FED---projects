@@ -1,72 +1,92 @@
 "use strict";
 
-let formDataCallback = null;
+// Callbacks for signup form data
+let signUpFormDataCallback = null;
 
-// Callback of the from data
-function validatedFormData(callback) {
-  formDataCallback = callback;
+function setSignUpFormDataCallback(callback) {
+  signUpFormDataCallback = callback;
 }
 
-// From validation section
-function validateBootstrapForms() {
-  const forms = document.querySelectorAll(".needs-validation");
+document.addEventListener("DOMContentLoaded", function () {
+  const signUpForm = document.getElementById("signUpForm");
+  if (signUpForm) {
+    signUpForm.addEventListener("submit", handleSignUpForm, false);
+  }
+});
 
-  Array.from(forms).forEach((form) => {
-    form.addEventListener(
-      "submit",
-      (event) => {
-        // Prevent the default form submission for testing!!
-        event.preventDefault();
-        // Prevent the default form submission for testing!!
-        const emailInput = document.getElementById("signUpEmail");
-        const chosenEmail = emailInput.value;
-        const isNoroffEmail = /@(stud\.noroff\.no|noroff\.no)$/.test(
-          chosenEmail
-        );
+// >>>>>>Section for the signup<<<<<<<<<<
+function handleSignUpForm(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
 
-        if (!isNoroffEmail) {
-          emailInput.setCustomValidity(
-            "Email must contain stud.noroff.no or noroff.no"
-          );
-        } else {
-          emailInput.setCustomValidity("");
-        }
+  // Username
+  const userNameInput = document.getElementById("signUpUserName");
+  const userName = userNameInput.value;
+  const isValidUserName = /^[A-Za-z0-9_]+$/.test(userName);
+  userNameInput.setCustomValidity(
+    isValidUserName
+      ? ""
+      : "User name must not contain punctuation symbols apart from underscore (_)"
+  );
 
-        const password = document.getElementById("signUpPassword").value;
-        const confirmPassword = document.getElementById(
-          "signUpConfirmPassword"
-        ).value;
+  // Email
+  const emailInput = document.getElementById("signUpEmail");
+  const chosenEmail = emailInput.value;
+  const isNoroffEmail = /@(stud\.noroff\.no|noroff\.no)$/.test(chosenEmail);
+  emailInput.setCustomValidity(
+    isNoroffEmail ? "" : "Email must contain stud.noroff.no or noroff.no"
+  );
 
-        if (password !== confirmPassword) {
-          document
-            .getElementById("signUpConfirmPassword")
-            .setCustomValidity("Passwords do not match.");
-        } else {
-          document
-            .getElementById("signUpConfirmPassword")
-            .setCustomValidity("");
-        }
-
-        if (!form.checkValidity()) {
-          event.stopPropagation();
-          form.classList.add("was-validated");
-        } else {
-          form.classList.add("was-validated");
-
-          const userName = document.getElementById("signUpUserName").value;
-          const userData = { name: userName, email: chosenEmail, password };
-          if (formDataCallback) {
-            formDataCallback(userData);
-          }
-          // Do i need it stringified?
-          // const userJSON = JSON.stringify(userData);
-          // console.log("Forms.mjs (stringified):", userJSON);
-          // console.log("Froms.mjs normal", userData);
-        }
-      },
-      false
+  // Password
+  const password = document.getElementById("signUpPassword").value;
+  const confirmPassword = document.getElementById(
+    "signUpConfirmPassword"
+  ).value;
+  document
+    .getElementById("signUpConfirmPassword")
+    .setCustomValidity(
+      password === confirmPassword ? "" : "Passwords do not match."
     );
-  });
+
+  // Section for checking the form validity
+  if (form.checkValidity() && signUpFormDataCallback) {
+    const userData = { name: userName, email: chosenEmail, password };
+    signUpFormDataCallback(userData);
+  }
+  console.log(userData);
+  form.classList.add("was-validated");
 }
 
-export { validateBootstrapForms, validatedFormData };
+// >>>>>>>><<SECTION FOR LOG IN <<<<<<<<<<
+// Callbacks for login form data
+let loginFormDataCallback = null;
+function setLoginFormDataCallback(callback) {
+  loginFormDataCallback = callback;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", handleLoginForm, false);
+  }
+});
+
+function handleLoginForm(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+
+  if (form.checkValidity() && loginFormDataCallback) {
+    const logInEmail = document.getElementById("logInEmail").value;
+    const logInPassword = document.getElementById("logInPassword").value;
+    const loginData = { email: logInEmail, password: logInPassword };
+
+    // console.log("Forms.mjs logindata", loginData);
+
+    loginFormDataCallback(loginData);
+  } else {
+    console.log("Form is invalid or callback not set");
+  }
+  form.classList.add("was-validated");
+}
+
+export { setSignUpFormDataCallback, setLoginFormDataCallback };

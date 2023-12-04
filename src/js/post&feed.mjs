@@ -1,6 +1,6 @@
-import { validateBootstrapForms } from "./utilities/forms.mjs";
+import { retrieveApiToken } from "./utilities/postHandling.mjs";
 
-validateBootstrapForms();
+retrieveApiToken();
 
 function dynamicSidebar() {
   var footerHeight = document.querySelector("footer").offsetHeight;
