@@ -6,6 +6,12 @@ $offcanvas-bg-color: rgb(224, 224, 224);
 // $offcanvas-transition-duration: 0.3s;
 $offcanvas-horizontal-width: 80vw;
 
+$spinner-width: 8rem;
+$spinner-height: $spinner-width;
+$spinner-vertical-align: -0.125em;
+$spinner-border-width: 0.25em;
+$spinner-animation-speed: 1s;
+
 .custom-sidebar {
   border-right: 2px solid $primary;
   max-width: 25vw;

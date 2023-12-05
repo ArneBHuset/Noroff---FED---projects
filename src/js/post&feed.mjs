@@ -1,8 +1,12 @@
 // import { retrieveApiPostData } from "./utilities/postHandling.mjs";
 import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
+import { defaultFormControl } from "./utilities/formsPost&feed.mjs";
+import { handleNewPostFormData } from "./utilities/newPost.mjs";
 
 // retrieveApiPostData();
 dynamicallyInsertedPosts();
+defaultFormControl();
+handleNewPostFormData();
 
 document.addEventListener("DOMContentLoaded", function () {
   // function dynamicSidebar() {
