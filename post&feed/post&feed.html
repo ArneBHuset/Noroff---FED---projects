@@ -19,7 +19,7 @@
   </head>
   <body>
     <div>
-      <header class="mb-2">
+      <header class="">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
             <a class="navbar-brand ms-4 ms-md-5" href="../index.html">
@@ -90,8 +90,8 @@
         </nav>
       </header>
       <main class="container-fluid ps-0 w-100 h-100">
-        <div class="row mx-0">
-          <div class="col-3 mobile-sidebar custom-sidebar p-0">
+        <div class="row mx-0 h-100">
+          <div class="col-1 col-md-3 mobile-sidebar custom-sidebar p-0">
             <button
               class="custom-navbar-toggler h-100"
               type="button"
@@ -109,7 +109,7 @@
                 id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel"
               >
-                <div class="offcanvas-header text-center">
+                <div class="offcanvas-header text-center rounded-5">
                   <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
                     FILTER
                   </h5>
@@ -227,11 +227,110 @@
                     role="status"
                     style="display: none"
                   >
-                    <span class="visually-hidden">Loading...</span>
+                    <span class="visually-hidden"></span>
                   </div>
-                  <div id="SocialPostsCard"></div>
+                  <div id="SocialPostsCard">
+                    <!-- <div class="custom-card mb-5">
+                      <div class="card-heder row text-center pt-2">
+                        <span id="postID" class="col-4 col-md-2">#ID</span>
+                        <span id="postTitle" class="col-4 col-md-6">TITLE</span>
+                        <button
+                          class="col-3 col-md-4 custom-popover-btn"
+                          data-bs-container="body"
+                          data-bs-toggle="popover"
+                          data-bs-trigger="hover"
+                          data-bs-placement="bottom"
+                          data-bs-content="Updated"
+                        >
+                          <span id="postAuthor">Created</span>
+                        </button>
+                      </div>
+                      <div class="card-body">
+                        <span
+                          ><img
+                            src="../src/img/Page1backG.png"
+                            class="card-img"
+                            alt="..."
+                            width=""
+                            height=""
+                        /></span>
+                      </div>
+                      <div class="row card-footer text-body-secondary m-0">
+                        <div class="col-12 col-md-6">
+                          <button
+                            class="custom-popover-btn"
+                            data-bs-container="body"
+                            data-bs-toggle="popover"
+                            data-bs-trigger="hover"
+                            data-bs-placement="bottom"
+                            data-bs-content="Author email, Author avatar, Author banner"
+                          >
+                            <span id="postAuthor" class="text-danger"
+                              >Author</span
+                            >
+                          </button>
+                        </div>
+                        <div id="postReactions" class="col-12 col-md-6">
+                          <span id="postReactionsSymbol">Symbol</span>
+                          <span id="postReactionsCount">Reactions count</span>
+                          <span id="postReactionsId">ReactionsID</span>
+                          <span id="postReactionsMessage">Message</span>
+                        </div>
 
-                  <div id="SocialPostsCard"></div>
+                        <div class="col-12">
+                          <p class="">
+                            <a
+                              class=""
+                              data-bs-toggle="collapse"
+                              href="#collapseExample"
+                              role="button"
+                              aria-expanded="true"
+                              aria-controls="collapseExample"
+                            >
+                              <span id="postComments">Comments</span>
+                            </a>
+                          </p>
+                          <div class="collapse" id="collapseExample">
+                            <div class="card card-body text-primary p-0 m-0">
+                              <button
+                                class="p-0 text-center custom-popover-btn"
+                                data-bs-container="body"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover"
+                                data-bs-placement="bottom"
+                                data-bs-content="Author email, Author avatar,
+                                Author banner"
+                              >
+                                <span id="postAuthor">Comment Author Name</span>
+                              </button>
+                              <span
+                                id="postCommentsBody"
+                                class="border text-center p-0"
+                                >commentsBody</span
+                              >
+                              <span id="postCommentsReplyToId" class=""
+                                >replytoID</span
+                              >
+                              <span id="postCommentsId" class=""
+                                >commentspostID</span
+                              >
+                              <span id="postCommentsOwner" class=""
+                                >commentsOwner?</span
+                              >
+                              <span id="postCommentsDate" class="col-6"
+                                >commentDate</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-2">
+                          <span id="postCountComments">CommentsCount</span>
+                          <span id="postCountReactions">ReactionsCount</span>
+                        </div>
+                      </div>
+                    </div> -->
+                  </div>
                 </div>
               </div>
             </div>

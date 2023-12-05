@@ -1,15 +1,12 @@
 const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 
-async function retrieveApiPostData(tag = "", active = true) {
+async function retrieveApiPostData(url) {
   try {
     const token = localStorage.getItem("accessToken");
     if (!token) {
       console.log("No access token available.");
       return;
     }
-    const url = `${API_BASE_URL}/social/posts?_tag=${encodeURIComponent(
-      tag
-    )}&_active=${active}`;
 
     const getData = {
       method: "GET",
@@ -20,107 +17,122 @@ async function retrieveApiPostData(tag = "", active = true) {
     };
 
     const response = await fetch(url, getData);
-    console.log(response);
+    // console.log(response);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const json = await response.json();
-    console.log("JSON POSTS DATA:", json);
+    // console.log("JSON POSTS DATA:", json);
+    return json;
   } catch (error) {
     console.log("Error:", error.message);
+    return null;
   }
 }
 
-export { retrieveApiPostData };
+// retrieveApiPostData(postsUrl);
+// export { retrieveApiPostData };
 
 // Section for creating post
-async function dynamicallyInsertedPosts() {
-  document.getElementById("spinner").style.display = "block";
-  // Delaying the spinner for cool visual effect
-  await new Promise((resolve) => setTimeout(resolve, 1500));
-  // Fetching posts
-  const posts = await retrieveApiPostData("my_tag", true);
-  console.log("postsdata", posts);
-  document.getElementById("spinner").style.display = "none";
-  if (posts && Array.isArray(posts)) {
-    const postsContainer = document.getElementById("SocialPostsCard");
-    postsContainer.innerHTML = "";
-    posts.forEach((post) => {
-      // Construct post HTML
-      const postHtml = `<div class="custom-card mb-5">
-      <div class="card-header">
-        <span id="postID">${post.id}</span>
-        <span id="postTitle">${post.title}</span>
-        <span id="postCreationDate">${post.created}</span>
-        <span id="postUpdatedDate">${post.updated}</span>
+function createPostHtml(post) {
+  return `<div class="custom-card mb-5">
+  <div class="card-header row text-center pt-2">
+    <span id="postID_${post.id}" class="col-4 col-md-2">#${post.id}</span>
+    <span id="postTitle_${post.id}" class="col-4 col-md-6">${post.title}</span>
+    <button
+      class="col-3 col-md-4 custom-popover-btn"
+      data-bs-container="body"
+      data-bs-toggle="popover"
+      data-bs-trigger="hover"
+      data-bs-placement="bottom"
+      data-bs-content="Updated"
+    >
+      <span id="postCreationDate_${post.id}">Created</span>
+    </button>
+  </div>
+  <div class="card-body">
+    <img src="${
+      post.media || "../src/img/Page1backG.png"
+    }" class="card-img" alt="${post.title}" />
+  </div>
+  <div class="row card-footer text-body-secondary m-0">
+    <!-- Author Section -->
+    <div class="col-12 col-md-6">
+      <button
+        class="custom-popover-btn"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-trigger="hover"
+        data-bs-placement="bottom"
+        data-bs-content="Author email, Author avatar, Author banner"
+      >
+        <span id="postAuthor_${post.id}" class="text-danger">${
+    post.author
+  }</span>
+      </button>
+    </div>
+    <!-- Reactions Section -->
+    <div id="postReactions_${post.id}" class="col-12 col-md-6">
+      <!-- Dynamically insert reactions here -->
+    </div>
+    <!-- Comments Section -->
+    <div class="col-12">
+      <p>
+        <a class="" data-bs-toggle="collapse" href="#collapseComments_${
+          post.id
+        }" role="button" aria-expanded="true" aria-controls="collapseComments_${
+    post.id
+  }">
+          <span id="postComments_${post.id}">Comments</span>
+        </a>
+      </p>
+      <div class="collapse" id="collapseComments_${post.id}">
+        <div class="card card-body text-primary p-0 m-0">
+          <!-- Dynamically insert comments here -->
+        </div>
       </div>
-      <div class="card-body"></div>`;
-      postsContainer.innerHTML += postHtml;
-    });
+    </div>
+    <!-- Post Counts Section -->
+    <div class="mt-2">
+      <span id="postCountComments_${post.id}">${
+    post._count.comments
+  } Comments</span>
+      <span id="postCountReactions_${post.id}">${
+    post._count.reactions
+  } Reactions</span>
+    </div>
+  </div>
+</div>
+`;
+}
+
+async function dynamicallyInsertedPosts() {
+  const loadingSpinner = document.getElementById("spinner");
+  loadingSpinner.classList.remove("d-none");
+  loadingSpinner.classList.add("d-flex");
+  // Delaying the spinner for cool visual effect
+  await new Promise((resolve) => setTimeout(resolve, 400));
+  const postsUrl = `${API_BASE_URL}/social/posts/89fdsdf28fsd`;
+  const response = await retrieveApiPostData(postsUrl);
+  // console.log("!response data!", response);
+  loadingSpinner.classList.remove("d-flex");
+  loadingSpinner.classList.add("d-none");
+  const postsContainer = document.getElementById("SocialPostsCard");
+  postsContainer.innerHTML = "";
+  if (Array.isArray(response)) {
+    //  multiple posts
+    response.forEach(
+      (post) => (postsContainer.innerHTML += createPostHtml(post))
+    );
+  } else if (response && typeof response === "object") {
+    //  single post
+    postsContainer.innerHTML = createPostHtml(response);
   } else {
     console.log("ERROR with dynamic posts");
+    postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR! Cannot retrieve any posts,</br> please reload or come back later</h5>`;
   }
 }
 
 export { dynamicallyInsertedPosts };
-
-{
-  /* 
-    //     <span>
-    //       <img */
-}
-//         src="../src/img/Page1backG.png"
-//         class="card-img"
-//         alt="..."
-//         width=""
-//         height=""
-//       />
-//     </span>
-//   </div>
-//   <div class="card-footer text-body-secondary">
-//     <div>
-//       <button
-//         type="button"
-//         class="btn btn-secondary"
-//         data-bs-container="body"
-//         data-bs-toggle="popover"
-//         data-bs-placement="bottom"
-//         data-bs-trigger="hover"
-//         v
-//         data-bs-content="Bottom popover"
-//       >
-//         <span id="postAuthor">Author</span>
-//       </button>
-
-//       <span id="postAuthorEmail">Author email</span>
-//       <span id="postAuthorAvatar">Author avatar</span>
-//       <span id="postAuthorBanner"> Author banner</span>
-//     </div>
-//     <div>
-//       <span id="postReactions">Reactions</span>
-//       <span id="postReactionsSymbol">Symbol</span>
-//       <span id="postReactionsCount">Reactions count</span>
-//       <span id="postReactionsId">ReactionsID</span>
-//       <span id="postReactionsMessage">Message</span>
-//     </div>
-//     <div>
-//       <span id="postComments">Comments</span>
-//       <span id="postCommentsBody">commentsBody</span>
-//       <span id="postCommentsReplyToId">replytoID</span>
-//       <span id="postCommentsId">commentspostID</span>
-//       <span id="postCommentsBody">commentsBody</span>
-//       <span id="postCommentsOwner">commentsOwner?</span>
-//       <span id="postCommentsDate">commentsDate</span>
-//       <span id="postCommentsAuthor">commentsAuthor</span>
-//       <span id="postAuthorEmail">Author email</span>
-//       <span id="postAuthorAvatar">Author avatar</span>
-//       <span id="postAuthorBanner"> Author banner</span>
-//     </div>
-//     <div>
-//       <span id="postCountComments">CommentsCount</span>
-//       <span id="postCountReactions">ReactionsCount</span>
-//     </div>
-//   </div>
-// </div>
