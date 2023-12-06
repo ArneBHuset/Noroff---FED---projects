@@ -1,12 +1,13 @@
 // import { retrieveApiPostData } from "./utilities/postHandling.mjs";
 import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
 import { defaultFormControl } from "./utilities/formsPost&feed.mjs";
-import { handleNewPostFormData } from "./utilities/newPost.mjs";
-
+import { createAndAddPost } from "./utilities/newPost.mjs";
+import { postDeletion } from "./utilities/postDelete.mjs";
 // retrieveApiPostData();
 dynamicallyInsertedPosts();
 defaultFormControl();
-handleNewPostFormData();
+createAndAddPost();
+postDeletion();
 
 document.addEventListener("DOMContentLoaded", function () {
   // function dynamicSidebar() {
@@ -18,10 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // dynamicSidebar();
 
   // >>>>DEFAULT BOOTSTRAP POPOVER LOGICK<<<<<<
-  const popoverTriggerList = document.querySelectorAll(
-    '[data-bs-toggle="popover"]'
-  );
-  const popoverList = [...popoverTriggerList].map(
-    (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
-  );
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+  const popoverList = [...popoverTriggerList].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
 });

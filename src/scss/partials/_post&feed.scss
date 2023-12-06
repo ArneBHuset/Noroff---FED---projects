@@ -63,3 +63,17 @@ $spinner-animation-speed: 1s;
   background: none;
   border: none;
 }
+
+.material-symbols-outlined {
+  position: absolute !important;
+  top: -17px;
+  right: -14px;
+  display: inline;
+  color: rgba(rgb(252, 75, 75), 0.6);
+
+  &:hover {
+    top: -19px;
+    right: -16px;
+    color: rgba(rgb(252, 75, 75), 0.8);
+  }
+}

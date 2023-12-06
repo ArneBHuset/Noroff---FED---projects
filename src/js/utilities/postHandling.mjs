@@ -39,6 +39,9 @@ async function retrieveApiPostData(url) {
 function createPostHtml(post) {
   // Constructing the HTML
   return `<div class="custom-card mb-5">
+  <button id="${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
+  <span class="material-symbols-outlined p-0">cancel</span>
+</button> 
     <div class="card-header row text-center m-0 ">
       <span id="postID_${post.id}" class="col-6 ">#${post.id}</span>
       <button
@@ -50,6 +53,7 @@ data-bs-placement="bottom"
 data-bs-content="fds">
 <span id="postCreationDate_${post.id}" class="col-6">${post.created}</span>
 </button>
+
       
   
       <span id="postTitle_${post.id}" class="col-12">${post.title}</span>
@@ -76,7 +80,7 @@ async function dynamicallyInsertedPosts() {
 
   await new Promise((resolve) => setTimeout(resolve, 300));
 
-  const postsUrl = `${API_BASE_URL}/social/posts/8829`;
+  const postsUrl = `${API_BASE_URL}/social/posts/`;
   const response = await retrieveApiPostData(postsUrl);
   // console.log(response);
   loadingSpinner.classList.remove("d-flex");
