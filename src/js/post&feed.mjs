@@ -3,11 +3,17 @@ import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
 import { defaultFormControl } from "./utilities/formsPost&feed.mjs";
 import { createAndAddPost } from "./utilities/newPost.mjs";
 import { postDeletion } from "./utilities/postDelete.mjs";
+// import { updatePostWrapped } from "./utilities/postChanges.mjs";
+import { reactionwrapped } from "./utilities/postChanges.mjs";
+import { commentFormData } from "./utilities/postChanges.mjs";
 // retrieveApiPostData();
 dynamicallyInsertedPosts();
 defaultFormControl();
 createAndAddPost();
 postDeletion();
+// updatePostWrapped();
+reactionwrapped();
+commentFormData();
 
 document.addEventListener("DOMContentLoaded", function () {
   // function dynamicSidebar() {

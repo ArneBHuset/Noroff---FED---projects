@@ -38,7 +38,7 @@ async function retrieveApiPostData(url) {
 // Section for creating post
 function createPostHtml(post) {
   // Constructing the HTML
-  return `<div class="custom-card mb-5">
+  return `<div id="${post.id}"class="custom-card mb-5">
   <button id="${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
   <span class="material-symbols-outlined p-0">cancel</span>
 </button> 
@@ -65,6 +65,22 @@ data-bs-content="fds">
     </div>
     <div class="row card-footer text-body-secondary m-0">
     <div class="col-12"><p>${post.body}</p></div>
+    <div class="col-12">       
+                                  <span id="postComments">Comments</span> 
+                                  </button>
+                                  <span
+                                    id="postCommentsBody"
+                                    class="border text-center p-0"
+                                    >This be where the comments comes</span>
+                                    <form id="commentForm">
+                                    <div class="mt-3">
+                                      <label for="CommentTextarea" class="form-label">Comment</label>
+                                      <textarea class="" id="commentTextArea" rows="2"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="commentSubmitBtn">Submit</button>
+                                    </form>
+                                </div>            
+                            </div>
       <div class="mt-2 col-12">
         <span id="postCountComments_${post.id}">${post._count.comments} Comments</span>
         <span id="postCountReactions_${post.id}">${post._count.reactions} Reactions</span>
@@ -73,14 +89,18 @@ data-bs-content="fds">
   </div>`;
 }
 
+let resolveDynamicallyInsertedPosts;
+export const dynamicallyInsertedPostsPromise = new Promise((resolve) => {
+  resolveDynamicallyInsertedPosts = resolve;
+});
 async function dynamicallyInsertedPosts() {
   const loadingSpinner = document.getElementById("spinner");
   loadingSpinner.classList.remove("d-none");
   loadingSpinner.classList.add("d-flex");
 
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 200));
 
-  const postsUrl = `${API_BASE_URL}/social/posts/`;
+  const postsUrl = `${API_BASE_URL}/social/posts/9043`;
   const response = await retrieveApiPostData(postsUrl);
   // console.log(response);
   loadingSpinner.classList.remove("d-flex");
@@ -97,6 +117,7 @@ async function dynamicallyInsertedPosts() {
     console.log("ERROR with dynamic posts");
     postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR! Cannot retrieve any posts, please reload or come back later</h5>`;
   }
+  resolveDynamicallyInsertedPosts();
 }
 
 export { dynamicallyInsertedPosts };

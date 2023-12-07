@@ -17,9 +17,7 @@ function defaultFormControl() {
         const newPostTitle = document.getElementById("titleInput").value;
         const newPostBody = document.getElementById("postTextarea").value;
         const newPostMedia = document.getElementById("fileInput").value;
-        const newPostTags = document
-          .getElementById("tagsInput")
-          .value.split(",");
+        const newPostTags = document.getElementById("tagsInput").value.split(",");
 
         if (!form.checkValidity()) {
           event.stopPropagation();
@@ -45,4 +43,10 @@ function defaultFormControl() {
 export { defaultFormControl, setNewPostFormDataCallback };
 
 // Section for search form
-function searchBarForm() {}
+
+{
+  /* <form class="d-flex mt-3" role="search">
+<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+<button class="btn btn-outline-success" type="submit">Search</button>
+</form> */
+}
