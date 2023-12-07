@@ -19,7 +19,6 @@ async function commonApiRequest(url, method, data = null) {
       headers: headers,
     };
 
-    // Only set 'Content-Type' to 'application/json' and include body if data is provided
     if (data !== null) {
       headers["Content-Type"] = "application/json";
       options.body = JSON.stringify(data);
@@ -57,55 +56,54 @@ function reactionwrapped() {
     return commonApiRequest(url, "PUT");
   }
 
-  // Example usage
-  //   reactToPost(9023, "👍")
-  //     .then((response) => {
-  //       console.log("Reaction response:", response);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error reacting to post:", error);
-  //       alert("ERROR");
-  //     });
+  // reactToPost(9043, "👍")
+  //   .then((response) => {
+  //     console.log("Reaction response:", response);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error reacting to post:", error);
+  //     alert("ERROR");
+  //   });
 }
 
 export { reactionwrapped };
 
 async function commentFormData() {
   try {
-    // Wait for dynamicallyInsertedPosts to complete
     await dynamicallyInsertedPostsPromise;
-    console.log("Now i can make comment functionality");
-
     const commentForm = document.getElementById("commentForm");
-    const commentValue = document.getElementById("commentTextArea").value;
-    console.log("This is thy comment", commentValue);
+    if (commentForm) {
+      commentForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const postId = commentForm.getAttribute("data-post-id");
+        const commentTextArea = document.getElementById("commentTextArea");
+        const commentValue = commentTextArea.value.trim();
+
+        if (commentValue) {
+          const url = `${API_BASE_URL}/social/posts/${postId}/comment`;
+          const data = {
+            body: commentValue,
+            replyToId: null,
+          };
+          try {
+            const response = await commonApiRequest(url, "POST", data);
+            console.log("Comment added:", response);
+
+            document.getElementById("postCommentsBody").innerHTML += commentValue;
+          } catch (apiError) {
+            console.error("Failed to post comment:", apiError);
+          }
+        } else {
+          console.log("Waiting for comment");
+        }
+      });
+    } else {
+      console.log("Comment form not found");
+    }
   } catch (error) {
     console.error("An error has occurred with commenting", error);
   }
 }
 
 export { commentFormData };
-
-// async function commentFormData() {
-//   await dynamicallyInsertedPosts();
-//   const commentTextArea = document.getElementById("CommentTextarea");
-
-//   if (commentTextArea) {
-//     commentTextArea.addEventListener("input", (event) => {
-//       console.log("Current value of textarea:", event.target.value);
-//     });
-//   } else {
-//     console.log("CommentTextarea not found");
-//   }
-// }
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   commentFormData();
-// });
-
-// export { commentFormData };
-
-// async function commentOnPost(postId, commentData) {
-//     const url = `${API_BASE_URL}/social/posts/${postId}/comment`;
-//     return makeApiRequest(url, "POST", commentData);
-//   }

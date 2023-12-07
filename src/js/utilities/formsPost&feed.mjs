@@ -1,5 +1,3 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-
 let newPostFormDataCallback = null;
 
 function setNewPostFormDataCallback(callback) {
@@ -43,6 +41,30 @@ function defaultFormControl() {
 export { defaultFormControl, setNewPostFormDataCallback };
 
 // Section for search form
+
+function searchBarForm() {
+  const currentSearchBar = document.getElementById("mainSearchBar");
+
+  if (currentSearchBar) {
+    currentSearchBar.addEventListener("focus", () => {
+      const currentSearchValue = currentSearchBar.value.trim();
+      if (currentSearchValue) {
+        console.log("Current search value:", currentSearchValue);
+      } else {
+        console.log("Search bar focused, but no value entered yet");
+      }
+    });
+
+    currentSearchBar.addEventListener("input", () => {
+      const currentSearchValue = currentSearchBar.value.trim();
+      console.log("Current typing value:", currentSearchValue);
+    });
+  } else {
+    console.log("Search bar not found");
+  }
+}
+
+export { searchBarForm };
 
 {
   /* <form class="d-flex mt-3" role="search">

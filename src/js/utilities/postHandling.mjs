@@ -38,7 +38,7 @@ async function retrieveApiPostData(url) {
 // Section for creating post
 function createPostHtml(post) {
   // Constructing the HTML
-  return `<div id="${post.id}"class="custom-card mb-5">
+  return `<div id="${post.id}" class="custom-card mb-5">
   <button id="${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
   <span class="material-symbols-outlined p-0">cancel</span>
 </button> 
@@ -71,8 +71,8 @@ data-bs-content="fds">
                                   <span
                                     id="postCommentsBody"
                                     class="border text-center p-0"
-                                    >This be where the comments comes</span>
-                                    <form id="commentForm">
+                                    >${post.commnents}</span>
+                                    <form id="commentForm" data-post-id="${post.id}">
                                     <div class="mt-3">
                                       <label for="CommentTextarea" class="form-label">Comment</label>
                                       <textarea class="" id="commentTextArea" rows="2"></textarea>
