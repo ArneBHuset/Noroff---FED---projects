@@ -1,21 +1,25 @@
 // import { retrieveApiPostData } from "./utilities/postHandling.mjs";
 import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
-import { defaultFormControl } from "./utilities/formsPost&feed.mjs";
+import { defaultFormControl } from "./utilities/newPostFormControl.mjs";
 import { createAndAddPost } from "./utilities/newPost.mjs";
 import { postDeletion } from "./utilities/postDelete.mjs";
 // import { updatePostWrapped } from "./utilities/postChanges.mjs";
-import { reactionwrapped } from "./utilities/postInteraction.mjs";
+// import { reactionwrapped } from "./utilities/postInteraction.mjs";
 import { commentFormData } from "./utilities/postInteraction.mjs";
-import { searchBarForm } from "./utilities/formsPost&feed.mjs";
+import { searchBarForm } from "./utilities/searchBarFilter.mjs";
+import { initializePopovers } from "./utilities/popovers.mjs";
+// import { updatePostFormControl } from "./utilities/postInteraction.mjs";
 // retrieveApiPostData();
 dynamicallyInsertedPosts();
 defaultFormControl();
 createAndAddPost();
 postDeletion();
 // updatePostWrapped();
-reactionwrapped();
+// reactionwrapped();
 commentFormData();
 searchBarForm();
+initializePopovers();
+// updatePostFormControl();
 document.addEventListener("DOMContentLoaded", function () {
   // function dynamicSidebar() {
   //   var footerHeight = document.querySelector("footer").offsetHeight;
@@ -24,8 +28,5 @@ document.addEventListener("DOMContentLoaded", function () {
   //   console.log("Footer height is:", footerHeight, "px");
   // }
   // dynamicSidebar();
-
   // >>>>DEFAULT BOOTSTRAP POPOVER LOGICK<<<<<<
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-  const popoverList = [...popoverTriggerList].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
 });

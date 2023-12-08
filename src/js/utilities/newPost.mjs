@@ -1,4 +1,4 @@
-import { setNewPostFormDataCallback } from "./formsPost&feed.mjs";
+import { setNewPostFormDataCallback } from "./newPostFormControl.mjs";
 
 let newPostFormData = {};
 let formDataPromiseResolve;

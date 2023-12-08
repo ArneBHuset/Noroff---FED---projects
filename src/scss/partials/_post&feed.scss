@@ -77,3 +77,40 @@ $spinner-animation-speed: 1s;
     color: rgba(rgb(252, 75, 75), 0.8);
   }
 }
+
+.search-dropdown {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  max-width: 22vh;
+  min-height: 50px;
+  background-color: none;
+  border: none;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  top: 140px;
+  left: 15px;
+  display: none;
+}
+
+.dropdown-item {
+  border-bottom: 1px solid black;
+}
+
+.post-hidden {
+  display: hidden;
+}
+
+.filtering-section {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.reactionSymbol {
+  border: none;
+  background: none;
+
+  &:hover {
+    font-size: 1.2em;
+  }
+}

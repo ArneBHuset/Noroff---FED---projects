@@ -41,32 +41,77 @@ async function updatePost(postId, updatedPostData) {
   return commonApiRequest(url, "PUT", updatedPostData);
 }
 
-const temporaryData = {
-  title: "Updated rainforest title5",
-  body: "Is this really a rainforest Updated",
-  tags: ["#wetrainforest, #moist"],
-  media: "https://shorturl.at/clzF0",
-};
+async function updatePostFormControl() {
+  try {
+    await dynamicallyInsertedPostsPromise;
 
-// updatePost(9023, temporaryData);
+    const updateButtons = document.querySelectorAll('[data-bs-target^="#exampleModal_"]');
 
-function reactionwrapped() {
-  async function reactToPost(postId, symbol) {
-    const url = `${API_BASE_URL}/social/posts/${postId}/react/${encodeURIComponent(symbol)}`;
-    return commonApiRequest(url, "PUT");
+    updateButtons.forEach((button) => {
+      const modalId = button.getAttribute("data-bs-target");
+      const modal = document.querySelector(modalId);
+      const postId = modalId.split("_")[1];
+
+      const form = modal.querySelector("form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        console.log("yiha");
+        const updateTitle = form.querySelector("#updateTitleInput").value;
+        const updateBody = form.querySelector("#updatePostTextarea").value;
+        const updateMedia = form.querySelector("#updateFileInput").value;
+        const updateTags = form.querySelector("#updateTagsInput").value;
+
+        let updatePostData = {};
+        if (updateTitle) updatePostData.title = updateTitle;
+        if (updateBody) updatePostData.body = updateBody;
+        if (updateMedia) updatePostData.media = updateMedia;
+        if (updateTags) updatePostData.tags = updateTags.split(",").map((tag) => tag.trim());
+
+        if (Object.keys(updatePostData).length > 0) {
+          await updatePost(postId, updatePostData);
+          console.log(`Updated post ${postId}`, updatePostData);
+        } else {
+          console.log("No changes to update");
+        }
+      });
+    });
+  } catch (error) {
+    console.error("Error in updatePostFormControl", error);
   }
-
-  // reactToPost(9043, "👍")
-  //   .then((response) => {
-  //     console.log("Reaction response:", response);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error reacting to post:", error);
-  //     alert("ERROR");
-  //   });
 }
 
-export { reactionwrapped };
+updatePostFormControl();
+
+async function reactionwrapped() {
+  try {
+    await dynamicallyInsertedPostsPromise;
+    document.addEventListener("click", async function (event) {
+      if (event.target && event.target.classList.contains("reactionSymbol")) {
+        const emojiSymbol = event.target.textContent;
+        const postId = event.target.id.split("_")[1];
+
+        if (emojiSymbol && postId) {
+          try {
+            const response = await reactToPost(postId, emojiSymbol);
+            console.log("Reaction response:", response);
+          } catch (error) {
+            console.error("Error reacting to post:", error);
+          }
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Error with reactions", error);
+  }
+}
+
+async function reactToPost(postId, symbol) {
+  console.log("running");
+  const url = `${API_BASE_URL}/social/posts/${postId}/react/${symbol}`;
+  return commonApiRequest(url, "PUT");
+}
+
+reactionwrapped();
 
 async function commentFormData() {
   try {

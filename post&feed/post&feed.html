@@ -80,10 +80,10 @@
                   <h5 class="offcanvas-title" id="offcanvasNavbarLabel">FILTER</h5>
                 </div>
                 <div class="offcanvas-body">
-                  <ul class="navbar-nav justify-content-end flex-grow-1"></ul>
-                  <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" id="mainSearchBar" type="search" placeholder="Search" aria-label="Search" />
-                    <button class="btn btn-outline-success" id="searchSubmitBtn" type="submit">Search</button>
+                  <form class="d-flex d-flex mt-3" role="search">
+                    <input class="form-control me-2" id="mainSearchBar" type="search" placeholder="Search ID & Titles" aria-label="Search" autocomplete="off" />
+                    <button class="btn btn-outline-success" id="searchSubmitBtn" type="submit">Filter</button>
+                    <div id="searchResultsDropdown" class="search-dropdown"></div>
                   </form>
                 </div>
               </div>
@@ -124,15 +124,20 @@
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
-                      <!-- <div class="col-4">
-                        <button class="btn btn-primary">Options</button>
+                      <div class="mt-4 p-3 filtering-section d-flex justify-content-center gap-5">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="tagsFiltering" value="option1" />
+                          <label class="form-check-label" for="inlineCheckbox1">Tags</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="activeFiltering" value="option2" />
+                          <label class="form-check-label" for="inlineCheckbox2">Active posts</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
+                          <label class="form-check-label" for="inlineCheckbox3">??</label>
+                        </div>
                       </div>
-                      <div class="col-4">
-                        <button class="btn btn-primary">Options</button>
-                      </div>
-                      <div class="col-4">
-                        <button class="btn btn-primary">Options</button>
-                      </div> -->
                     </div>
                   </div>
                 </div>
