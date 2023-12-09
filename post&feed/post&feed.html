@@ -119,23 +119,19 @@
 
                         <div class="mb-3">
                           <label for="tagsInput" class="form-label">Tags</label>
-                          <input type="text" class="form-control" id="tagsInput" placeholder="Add tags separated by commas" value="#wetrainforest, #moist" />
+                          <input type="text" class="form-control" id="tagsInput" placeholder="Add tags separated by commas" value="#moist" />
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
                       <div class="mt-4 p-3 filtering-section d-flex justify-content-center gap-5">
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="tagsFiltering" value="option1" />
-                          <label class="form-check-label" for="inlineCheckbox1">Tags</label>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control w-50" id="tagsInputValue" placeholder="#Tags" aria-label="Recipient's username" aria-describedby="button-addon2" />
+                          <button class="btn btn-outline-secondary" type="button" id="tagFilteringBtn">Filter</button>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="activeFiltering" value="option2" />
-                          <label class="form-check-label" for="inlineCheckbox2">Active posts</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
-                          <label class="form-check-label" for="inlineCheckbox3">??</label>
+                        <div class="">
+                          <label class="form-check-label" for="activeFiltering">Active posts only</label>
+                          <input class="form-checkbox" type="checkbox" id="activeFiltering" value="option2" />
                         </div>
                       </div>
                     </div>

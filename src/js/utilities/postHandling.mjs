@@ -18,13 +18,13 @@ async function retrieveApiPostData(url) {
     };
 
     const response = await fetch(url, getData);
-
+    console.log(response);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const json = await response.json();
-    // console.log("JSON POSTS DATA:", json);
+    console.log("JSON POSTS DATA:", json);
     return json;
   } catch (error) {
     console.log("Error:", error.message);
@@ -37,24 +37,31 @@ async function retrieveApiPostData(url) {
 
 // Section for creating post
 function createPostHtml(post) {
+  let reactionsHtml = "";
+  if (post.reactions) {
+    post.reactions.forEach((reaction) => {
+      reactionsHtml += `<div>${reaction.symbol} - Count: ${reaction.count}</div>`;
+    });
+  }
+
+  let commentsHtml = "";
+  if (post.comments) {
+    post.comments.forEach((comment) => {
+      commentsHtml += `<div>${comment.body} - Author: ${comment.author.name}</div>`;
+    });
+  }
   // Constructing the HTML
   return `<div id="${post.id}" class="custom-card mb-5">
-  <button id="${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
-    <span class="material-symbols-outlined p-0">cancel</span>
-  </button> 
+ 
   <div class="card-header row text-center m-0 ">
     <span id="postID_${post.id}" class="col-6 ">#${post.id}</span>
-    <button class="col-4 col-md-4 custom-popover-btn"
-            data-bs-container="body"
-            data-bs-toggle="popover"
-            data-bs-trigger="hover"
-            data-bs-placement="bottom"
-            data-bs-content="fds">
-      <span id="postCreationDate_${post.id}" class="col-6">${post.created}</span>
-    </button>
+    <span id="postCreationDate_${post.id}" class="col-6">${post.created}</span>
     <button type="button" class="btn-primary col-1" data-bs-toggle="modal" data-bs-target="#exampleModal_${post.id}">
-      Update
+      Update post
     </button>
+    <button id="${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
+    <span class="material-symbols-outlined p-0">cancel</span>
+    </button> 
     <div class="modal fade" id="exampleModal_${post.id}" tabindex="-1" aria-labelledby="exampleModalLabel_${post.id}" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -87,10 +94,10 @@ function createPostHtml(post) {
       </div>
     </div>
     <span id="postTitle_${post.id}" class="col-12">${post.title}</span>
+    <span id="postCreationDate_${post.id}" class="col-6">${post.updated}</span>
   </div>
   <div class="card-body">
     <img src="${post.media || "../src/img/Image_not_available.png"}" class="card-img" alt="${post.title}" />
-    <div>Tags: ${post.tags.join(", ")}</div>
   </div>
   <div class="row card-footer text-body-secondary m-0">
     <div class="col-8"><p>${post.body}</p></div>
@@ -102,11 +109,11 @@ function createPostHtml(post) {
 
     <div class="col-12">
       <span id="postComments_${post.id}">Comments</span>
-      <span id="postCommentsBody_${post.id}" class="border text-center p-0">${post.comments}</span>
+      <span id="postCommentsBody" class="border text-center p-0">${commentsHtml}</span>
       <form id="commentForm" data-post-id="${post.id}">
         <div class="mt-3">
-          <label for="commentTextArea_${post.id}" class="form-label">Comment</label>
-          <textarea class="form-control" id="commentTextArea_${post.id}" rows="2"></textarea>
+          <label for="commentTextArea" class="form-label">Comment</label>
+          <textarea class="form-control" id="commentTextArea" rows="2"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="commentSubmitBtn_${post.id}">Submit</button>
       </form>
@@ -127,16 +134,22 @@ let resolveDynamicallyInsertedPosts;
 export const dynamicallyInsertedPostsPromise = new Promise((resolve) => {
   resolveDynamicallyInsertedPosts = resolve;
 });
-async function dynamicallyInsertedPosts() {
+
+async function dynamicallyInsertedPosts(tagFilter = "", isActive = true) {
   const loadingSpinner = document.getElementById("spinner");
   loadingSpinner.classList.remove("d-none");
   loadingSpinner.classList.add("d-flex");
 
   await new Promise((resolve) => setTimeout(resolve, 200));
 
-  const postsUrl = `${API_BASE_URL}/social/posts/?_tag=#wetrainforest, #moist`;
+  let postsUrl = `${API_BASE_URL}/social/posts/`;
+  const queryParams = ["_author=true", "_comments=true", "_reactions=true"]; // Include author, comments, and reactions
+
+  if (tagFilter) queryParams.push(`_tag=${encodeURIComponent(tagFilter)}`);
+  if (!isActive) queryParams.push("_active=false");
+  if (queryParams.length) postsUrl += `?${queryParams.join("&")}`;
+
   const response = await retrieveApiPostData(postsUrl);
-  // console.log(response);
   loadingSpinner.classList.remove("d-flex");
   loadingSpinner.classList.add("d-none");
 
@@ -154,6 +167,30 @@ async function dynamicallyInsertedPosts() {
   resolveDynamicallyInsertedPosts();
 }
 
-function filteringOptions() {}
+dynamicallyInsertedPosts("", true);
+
+function filteringOptions() {
+  document.getElementById("tagFilteringBtn").addEventListener("click", () => {
+    let tagInput = document.getElementById("tagsInputValue").value;
+    const isActive = !document.getElementById("activeFiltering").checked;
+    console.log(tagInput, isActive);
+    dynamicallyInsertedPosts(tagInput, isActive);
+  });
+
+  document.getElementById("tagsInputValue").addEventListener("input", (e) => {
+    if (e.target.value && !e.target.value.startsWith("#")) {
+      e.target.value = "#" + e.target.value.replace(/#/g, "");
+    }
+  });
+
+  document.getElementById("activeFiltering").addEventListener("change", () => {
+    const tagInput = document.getElementById("tagsInputValue").value;
+    const isActive = !document.getElementById("activeFiltering").checked;
+
+    dynamicallyInsertedPosts(tagInput, isActive);
+  });
+}
+
+filteringOptions();
 
 export { dynamicallyInsertedPosts };

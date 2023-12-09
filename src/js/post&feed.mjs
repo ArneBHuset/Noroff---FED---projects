@@ -1,5 +1,5 @@
 // import { retrieveApiPostData } from "./utilities/postHandling.mjs";
-import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
+// import { dynamicallyInsertedPosts } from "./utilities/postHandling.mjs";
 import { defaultFormControl } from "./utilities/newPostFormControl.mjs";
 import { createAndAddPost } from "./utilities/newPost.mjs";
 import { postDeletion } from "./utilities/postDelete.mjs";
@@ -10,7 +10,7 @@ import { searchBarForm } from "./utilities/searchBarFilter.mjs";
 import { initializePopovers } from "./utilities/popovers.mjs";
 // import { updatePostFormControl } from "./utilities/postInteraction.mjs";
 // retrieveApiPostData();
-dynamicallyInsertedPosts();
+// dynamicallyInsertedPosts();
 defaultFormControl();
 createAndAddPost();
 postDeletion();
