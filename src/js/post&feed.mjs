@@ -8,6 +8,7 @@ import { postDeletion } from "./utilities/postDelete.mjs";
 import { commentFormData } from "./utilities/postInteraction.mjs";
 import { searchBarForm } from "./utilities/searchBarFilter.mjs";
 import { initializePopovers } from "./utilities/popovers.mjs";
+import { signOut } from "./utilities/signOut.mjs";
 // import { updatePostFormControl } from "./utilities/postInteraction.mjs";
 // retrieveApiPostData();
 // dynamicallyInsertedPosts();
@@ -19,6 +20,7 @@ postDeletion();
 commentFormData();
 searchBarForm();
 initializePopovers();
+signOut();
 // updatePostFormControl();
 document.addEventListener("DOMContentLoaded", function () {
   // function dynamicSidebar() {
