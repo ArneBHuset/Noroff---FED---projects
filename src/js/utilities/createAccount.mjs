@@ -32,8 +32,6 @@ function wrappedCreateAccount() {
   const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 
   async function createAccount(url, userFormData) {
-    console.log(url, userFormData);
-
     try {
       const postData = {
         method: "POST",
@@ -42,12 +40,26 @@ function wrappedCreateAccount() {
         },
         body: JSON.stringify(userFormData),
       };
+
       const response = await fetch(url, postData);
-      console.log("response", response);
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const json = await response.json();
       console.log(json);
+
+      // Trigger collapse state change upon successful account creation
+      const signUpCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample2"));
+      const logInCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample1"));
+
+      signUpCollapse.show();
+      logInCollapse.hide();
     } catch (error) {
-      console.log("!ERROR!", error);
+      console.log("Error in creating account", error);
+      alert("Account allready exists");
     }
   }
 

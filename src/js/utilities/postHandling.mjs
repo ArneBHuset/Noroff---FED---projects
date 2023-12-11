@@ -80,17 +80,51 @@ function createPostHtml(post) {
 
   return `
     <div id="${post.id}" class="custom-card mb-5">
-      <div class="card-header row text-center m-0">
-        <span id="postID_${post.id}" class="col-6">#${post.id}</span>
-        <span id="postCreationDate_${post.id}" class="col-6">${new Date(post.created).toLocaleString()}</span>
-        <button type="button" class="btn-primary col-1" data-bs-toggle="modal" data-bs-target="#exampleModal_${post.id}">
-          Update post
+      <div class="card-header row text-center m-0 p-0">
+        <span id="postID_${post.id}" class="col-4">#${post.id}</span>
+        <span id="postCreationDate_${post.id}" class="col-4">${new Date(post.created).toLocaleString()}</span>
+        <div class="col-2 corner-btn-position">
+        <button type="button" class="btn-post-top-corner bg-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_${post.id}">
+          Update
         </button>
-        <button id="deleteBtn_${post.id}" class="deletePostBtn col-1 custom-popover-btn text-center">
-          <span class="material-symbols-outlined">cancel</span>
+        <button id="${post.id}" class="deletePostBtn btn-post-top-corner bg-danger ">
+        Delete
         </button>
-        <div class="col-12 post-profile-picture">${authorHtml}</div>
+        </div>
+        <div class="col-5 post-profile-picture">${authorHtml}</div>
+        <div class="col-6" id="postTitle_${post.id}">${post.title}</div>
       </div>
+      <div class="modal fade" id="exampleModal_${post.id}" tabindex="-1" aria-labelledby="exampleModalLabel_${post.id}" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="exampleModalLabel_${post.id}">Update post ${post.id} <br> ${post.title}</h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="container id="updatePostForm">
+              <div class="mb-3">
+                <label for="updateTitleInput" class="form-label">Update title</label>
+                <input type="text" class="form-control" id="updateTitleInput"/>
+              </div>
+              <div class="mb-3">
+                <label for="updatePostTextarea" class="form-label">Update post</label>
+                <textarea class="form-control" id="updatePostTextarea" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="updateFileInput" class="form-label">Update picture/video</label>
+                <input type="text" class="form-control" id="updateFileInput" value="https://shorturl.at/lnryW" />
+              </div>
+              <div class="mb-3">
+                <label for="updateTagsInput" class="form-label">Tags</label>
+                <input type="text" class="form-control" id="updateTagsInput" placeholder="Add tags, #moist" />
+              </div>
+              <button type="submit" id="updateSubmit" class="btn btn-primary">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
       <div class="card-body">
         <img src="${post.media || "../src/img/Image_not_available.png"}" alt="${post.title}" class="card-img">
       </div>
@@ -135,7 +169,6 @@ async function dynamicallyInsertedPosts({ tagFilter = "", includeAuthor = true, 
   if (JSON.stringify(currentFilters) === JSON.stringify({ includeAuthor, includeComments, includeReactions })) {
     return;
   }
-  console.log("running");
   currentFilters = { tagFilter, includeAuthor, includeComments, includeReactions };
 
   const loadingSpinner = document.getElementById("spinner");

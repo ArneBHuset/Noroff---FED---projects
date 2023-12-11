@@ -17,8 +17,8 @@
   </head>
   <body>
     <div>
-      <header class="">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <header class="background-primary border-bottom border-secondary">
+        <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
             <a class="navbar-brand ms-4 ms-md-5" href="../index.html">
               <img src="../src/img/png/logo-no-background.png" height="80" width="auto" alt="Page logo" class="ms-md-5 ps-md-1" />
@@ -62,34 +62,33 @@
                 </li>
               </ul>
               <div class="nav-item me-md-5 ms-4">
-                <a href="/index.html"><button class="btn btn-primary" id="signOutBtn">Log out</button></a>
+                <a href="/index.html"><button class="btn btn-primary btn-hover" id="signOutBtn">Log out</button></a>
               </div>
             </div>
           </div>
         </nav>
       </header>
-      <main class="container-fluid ps-0 w-100 h-100">
+      <main class="container-fluid ps-0 w-100 h-100 background-primary">
         <div class="row mx-0 h-100">
-          <div class="col-1 col-md-3 mobile-sidebar custom-sidebar p-0">
+          <div class="col-1 col-md-3 mobile-sidebar custom-sidebar p-0 background-secondary">
             <button class="custom-navbar-toggler h-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
               <span class="material-symbols-outlined">sort</span>
             </button>
-            <nav class="navbar bg-body-tertiary h-100 p-0 text-center">
+            <nav class="navbar h-100 p-0 text-center">
               <div class="offcanvas offcanvas-start text-center" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header text-center rounded-5">
-                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">FILTER</h5>
+                <div class="d-flex justify-content-center pt-4 background-secondary">
+                  <h5 class="custom-title-font" id="offcanvasNavbarLabel">SEARCH</h5>
                 </div>
-                <div class="offcanvas-body">
-                  <form class="d-flex d-flex mt-3" role="search">
+                <div class="offcanvas-body background-secondary">
+                  <form class="d-flex mt-2 w-100" role="search">
                     <input class="form-control me-2" id="mainSearchBar" type="search" placeholder="Search ID & Titles" aria-label="Search" autocomplete="off" />
-                    <button class="btn btn-outline-success" id="searchSubmitBtn" type="submit">Filter</button>
-                    <div id="searchResultsDropdown" class="search-dropdown"></div>
+                    <button class="btn btn-primary" id="searchSubmitBtn" type="submit">Filter</button>
+                    <div id="searchResultsDropdown" class="search-dropdown custom-text-font w-100"></div>
                   </form>
                 </div>
               </div>
             </nav>
           </div>
-
           <div class="col-9">
             <div class="container">
               <div class="row">
@@ -129,16 +128,17 @@
                           <input type="text" class="form-control w-50" id="tagsInputValue" placeholder="#Tags" aria-label="Recipient's username" aria-describedby="button-addon2" />
                           <button class="btn btn-outline-secondary" type="button" id="tagFilteringBtn">Filter</button>
                         </div>
+                        <h5>Filter out</h5>
                         <div class="form-check form-check-inline">
-                          <label class="form-check-label" for="authorFiltering">Include author</label>
-                          <input class="form-checkbox" type="checkbox" id="authorFiltering" checked />
+                          <label class="form-check-label" for="authorFiltering">Author</label>
+                          <input class="form-check-input" type="checkbox" id="authorFiltering" checked />
                         </div>
                         <div class="form-check form-check-inline">
-                          <label class="form-check-label" for="commentsFiltering">Include Comments</label>
-                          <input class="form-check-input" type="checkbox" id="commentsFiltering" />
+                          <label class="form-check-label" for="commentsFiltering">Comments</label>
+                          <input class="form-check-input" type="checkbox" id="commentsFiltering" checked />
                         </div>
                         <div class="form-check form-check-inline">
-                          <label class="form-check-label" for="reactionsFiltering">Include Reactions</label>
+                          <label class="form-check-label" for="reactionsFiltering">Reactions</label>
                           <input class="form-check-input" type="checkbox" id="reactionsFiltering" checked />
                         </div>
                       </div>

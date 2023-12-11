@@ -19,41 +19,35 @@ function handleSignUpForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
 
-  // Username
+  // Username Validation
   const userNameInput = document.getElementById("signUpUserName");
-  const userName = userNameInput.value;
-  const isValidUserName = /^[A-Za-z0-9_]+$/.test(userName);
-  userNameInput.setCustomValidity(
-    isValidUserName
-      ? ""
-      : "User name must not contain punctuation symbols apart from underscore (_)"
-  );
+  const isValidUserName = /^[A-Za-z0-9_]+$/.test(userNameInput.value);
+  userNameInput.setCustomValidity(isValidUserName);
 
-  // Email
+  // Email Validation
   const emailInput = document.getElementById("signUpEmail");
-  const chosenEmail = emailInput.value;
-  const isNoroffEmail = /@(stud\.noroff\.no|noroff\.no)$/.test(chosenEmail);
-  emailInput.setCustomValidity(
-    isNoroffEmail ? "" : "Email must contain stud.noroff.no or noroff.no"
-  );
+  const isNoroffEmail = /@(stud\.noroff\.no|noroff\.no)$/.test(emailInput.value);
+  emailInput.setCustomValidity(isNoroffEmail ? "" : "Must contain stud.noroff.no or noroff.no");
+  document.getElementById("invalidEmailFeedback").textContent = emailInput.validationMessage;
 
-  // Password
+  // Password Validation
   const password = document.getElementById("signUpPassword").value;
-  const confirmPassword = document.getElementById(
-    "signUpConfirmPassword"
-  ).value;
-  document
-    .getElementById("signUpConfirmPassword")
-    .setCustomValidity(
-      password === confirmPassword ? "" : "Passwords do not match."
-    );
+  const confirmPassword = document.getElementById("signUpConfirmPassword").value;
+  document.getElementById("signUpConfirmPassword").setCustomValidity(password === confirmPassword ? "" : "Passwords do not match.");
+  document.getElementById("passwordConfirmFeedback").textContent = document.getElementById("signUpConfirmPassword").validationMessage;
 
-  // Section for checking the form validity
+  // Check form validity and perform action
   if (form.checkValidity() && signUpFormDataCallback) {
-    const userData = { name: userName, email: chosenEmail, password };
+    const userData = {
+      name: userNameInput.value,
+      email: emailInput.value,
+      password,
+    };
     signUpFormDataCallback(userData);
+  } else {
+    console.log("Form is invalid or callback not set");
   }
-  console.log(userData);
+
   form.classList.add("was-validated");
 }
 
@@ -79,9 +73,7 @@ function handleLoginForm(event) {
     const logInEmail = document.getElementById("logInEmail").value;
     const logInPassword = document.getElementById("logInPassword").value;
     const loginData = { email: logInEmail, password: logInPassword };
-
     // console.log("Forms.mjs logindata", loginData);
-
     loginFormDataCallback(loginData);
   } else {
     console.log("Form is invalid or callback not set");

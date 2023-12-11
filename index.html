@@ -9,75 +9,36 @@
     <script type="module" src="./src/js/index.mjs"></script>
   </head>
   <body class="background-primary">
-    <main class="container vh-100">
-      <div class="row h-100">
-        <div
-          class="col-12 d-flex justify-content-center align-items-center mt-5"
-        >
-          <img
-            src="./src/img/png/logo-color.png"
-            height="280"
-            width="280"
-            class="rounded-circle size-md-2"
-          />
+    <main class="container vh-100 d-flex justify-content-center">
+      <div class="row h-100 background-secondary w-50">
+        <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+          <img src="./src/img/png/logo-color.png" height="280" width="280" class="rounded-circle size-md-2" />
         </div>
 
         <div class="col-12 w-100">
-          <div class="custom-card text-center">
+          <div class="custom-card text-center border-0">
             <div class="card-body login-card-border mt-4">
               <div class="row">
                 <div class="col">
-                  <div
-                    class="collapse show multi-collapse"
-                    id="multiCollapseExample1"
-                  >
+                  <div class="collapse show multi-collapse" id="multiCollapseExample1">
                     <!-- Log in form -->
                     <h5 class="card-title">Log in</h5>
-                    <form
-                      class="row g-3 needs-validation"
-                      id="loginForm"
-                      autocomplete="on"
-                      type="submit"
-                      action="./post&feed/post&feed.html"
-                      method="post"
-                      novalidate
-                    >
+                    <form class="row g-3 needs-validation" id="loginForm" autocomplete="on" type="submit" action="./post&feed/post&feed.html" method="post" novalidate>
                       <div class="mb-3">
-                        <input
-                          type="email"
-                          class="form-control"
-                          autocomplete="email"
-                          id="logInEmail"
-                          placeholder="name@example.noroff"
-                          value="arne@noroff.no"
-                          required
-                        />
+                        <input type="email" class="form-control" autocomplete="email" id="logInEmail" placeholder="name@example.noroff" required />
 
-                        <div class="invalid-feedback">
-                          Please enter valid email
-                        </div>
+                        <div class="invalid-feedback">Please enter valid email</div>
                       </div>
                       <div class="mb-3">
-                        <input
-                          type="password"
-                          autocomplete="current-password"
-                          class="form-control"
-                          id="logInPassword"
-                          placeholder="Password"
-                          value="12345678"
-                          required
-                        />
-                        <div class="invalid-feedback">
+                        <input type="password" autocomplete="current-password" class="form-control" id="logInPassword" placeholder="Password" required />
+                        <div class="invalid-feedback d-block justify-content-center">
                           Please enter correct password
-                          <button class="btn">Forgot Password?</button>
+                          <button class="btn text-center w-100">Forgot Password?</button>
                         </div>
                       </div>
 
                       <div class="col-12 my-4">
-                        <button class="btn btn-primary" type="submit">
-                          Log in
-                        </button>
-                        <a href="./post&feed/post&feed.html">Cheatbtn</a>
+                        <button class="btn bg-primary" type="submit">Log in</button>
                       </div>
                     </form>
                     <div class="row">
@@ -107,84 +68,27 @@
                     Log in
                   </button>
                   <h5 class="card-title">Create account</h5>
-                  <form
-                    class="row g-3 needs-validation"
-                    id="signUpForm"
-                    autocomplete="on"
-                    method="post"
-                    action="./post&feed/post&feed.html"
-                    novalidate
-                  >
+                  <form class="row g-3 needs-validation" id="signUpForm" autocomplete="on" method="post" novalidate>
                     <div class="mb-3">
                       <div id="debugOutput"></div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        autocomplete="name"
-                        value="test_a"
-                        id="signUpUserName"
-                        placeholder="User name"
-                        required
-                      />
-                      <div class="invalid-feedback">
-                        Please enter your user name
-                      </div>
+                      <input type="text" class="form-control" autocomplete="name" id="signUpUserName" placeholder="User name" required />
+                      <div class="invalid-feedback" id="usernameFeedback">Please enter a user name</div>
                     </div>
                     <div class="mb-3">
-                      <input
-                        type="email"
-                        autocomplete="email"
-                        value="arne@noroff.no"
-                        class="form-control"
-                        id="signUpEmail"
-                        placeholder="noroff.no / stud.noroff.no"
-                        required
-                      />
-                      <div class="invalid-feedback" id="invalidEmailFeedback">
-                        Please enter correct email
-                      </div>
+                      <input type="email" autocomplete="email" class="form-control" id="signUpEmail" placeholder="noroff.no / stud.noroff.no" required />
+                      <div class="invalid-feedback" id="invalidEmailFeedback"></div>
                     </div>
                     <div class="mb-3">
-                      <input
-                        type="password"
-                        autocomplete="new-password"
-                        value="12345678"
-                        class="form-control"
-                        id="signUpPassword"
-                        minlength="8"
-                        placeholder="New password"
-                        required
-                      />
-                      <div class="invalid-feedback">
-                        Minimum 8 character password
-                      </div>
+                      <input type="password" autocomplete="new-password" class="form-control" id="signUpPassword" minlength="8" placeholder="New password" required />
+                      <div class="invalid-feedback" id="">Minimum 8 character password</div>
                     </div>
                     <div class="mb-3">
-                      <input
-                        type="password"
-                        autocomplete="new-password"
-                        value="12345678"
-                        class="form-control"
-                        id="signUpConfirmPassword"
-                        placeholder="Confirm password"
-                        required
-                      />
-                      <div
-                        class="invalid-feedback"
-                        id="passwordConfirmFeedback"
-                      >
-                        Passwords does not match
-                      </div>
+                      <input type="password" autocomplete="new-password" class="form-control" id="signUpConfirmPassword" placeholder="Confirm password" required />
+                      <div class="invalid-feedback" id="passwordConfirmFeedback">Passwords does not match</div>
                     </div>
 
                     <div class="col-12 my-4">
-                      <button
-                        class="btn btn-primary"
-                        id="sign-up-btn"
-                        type="submit"
-                      >
-                        Real Sign up!
-                      </button>
+                      <button class="btn btn-primary" id="sign-up-btn" type="submit">Real Sign up!</button>
                     </div>
                   </form>
                 </div>
