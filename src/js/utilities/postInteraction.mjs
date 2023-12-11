@@ -134,8 +134,6 @@ async function commentFormData() {
           try {
             const response = await commonApiRequest(url, "POST", data);
             console.log("Comment added:", response);
-
-            document.getElementById("postCommentsBody").innerHTML += commentValue;
           } catch (apiError) {
             console.error("Failed to post comment:", apiError);
           }

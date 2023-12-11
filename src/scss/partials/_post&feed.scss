@@ -14,7 +14,7 @@ $spinner-animation-speed: 1s;
 
 .custom-sidebar {
   border-right: 2px solid $primary;
-  max-width: 25vw;
+  // max-width: 25vw;
   box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
@@ -88,33 +88,19 @@ $spinner-animation-speed: 1s;
   display: hidden;
 }
 
-.filtering-section {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: 100%;
-}
-
 .btn-post-top-corner {
   display: flex;
-  max-width: 50px;
   font-size: 12px;
   text-align: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.corner-btn-position {
-  display: flex;
-  position: absolute;
-  top: 3px;
-  right: 17px;
 }
 
 .reactionSymbol {
   border: none;
   background: none;
 
-  &:hover {
-    font-size: 1.2em;
+  &:click {
+    cursor: pointer;
   }
 }
 
@@ -122,4 +108,14 @@ $spinner-animation-speed: 1s;
   width: 35px;
   height: 35px;
   border-radius: 100px;
+}
+
+.profile-picture {
+  border-radius: 100px;
+  height: 60px;
+  width: 60px;
+}
+
+.custom-input {
+  max-width: 50vh;
 }

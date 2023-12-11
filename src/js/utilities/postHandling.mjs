@@ -63,10 +63,11 @@ function createPostHtml(post) {
     commentsHtml = post.comments
       .map(
         (comment) =>
-          `<div class="post-profile-picture">
-        ${comment.body}<br>
+          `<div class="post-profile-picture border-bottom my-3 border-primary">
+       
         <img src="${comment.author.avatar || "../src/img/avatar.jpg"}" class="post-profile-picture">
-        ${comment.author.name}<br>${new Date(comment.created).toLocaleString()}
+        <span class="custom-title-font">${comment.author.name}<br>${comment.created} <br></span>
+        <span class="custom-text-font"> ${comment.body}</span>
       </div>`
       )
       .join("");
@@ -79,20 +80,20 @@ function createPostHtml(post) {
   }
 
   return `
-    <div id="${post.id}" class="custom-card mb-5">
-      <div class="card-header row text-center m-0 p-0">
-        <span id="postID_${post.id}" class="col-4">#${post.id}</span>
-        <span id="postCreationDate_${post.id}" class="col-4">${new Date(post.created).toLocaleString()}</span>
-        <div class="col-2 corner-btn-position">
-        <button type="button" class="btn-post-top-corner bg-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_${post.id}">
+    <div id="${post.id}" class="custom-card my-3">
+      <div class="card-header row  m-0 pt-1 ">
+        <span id="postID_${post.id}" class="col-3 col-md-3 custom-title-font fs-6 ps-1 ps-md-3 mt-md-2">#${post.id}</span>
+        <span id="postCreationDate_${post.id}" class="col-9 col-md-6 custom-title-font fs-6 p-0 mt-md-2 text-center">${post.created}</span>
+        <div class="col-12 col-md-3 d-flex custom-title-font justify-content-center gap-2 ms-md-0">
+        <button type="button" class="btn p-1 btn-post-top-corner bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal_${post.id}">
           Update
         </button>
-        <button id="${post.id}" class="deletePostBtn btn-post-top-corner bg-danger ">
+        <button id="${post.id}" class="btn p-1 deletePostBtn btn-post-top-corner bg-danger ">
         Delete
         </button>
         </div>
-        <div class="col-5 post-profile-picture">${authorHtml}</div>
-        <div class="col-6" id="postTitle_${post.id}">${post.title}</div>
+        <div class="col-12 col-md-4 mt-4 ms-3 ms-md-0 custom-title-font post-profile-picture">${authorHtml}</div>
+        <div class="col-12 col-md-8 mt-4  ms-3 ms-md-0 text-left custom-title-font fs-4 fw-medium" id="postTitle_${post.id}">${post.title}</div>
       </div>
       <div class="modal fade" id="exampleModal_${post.id}" tabindex="-1" aria-labelledby="exampleModalLabel_${post.id}" aria-hidden="true">
       <div class="modal-dialog">
@@ -125,23 +126,23 @@ function createPostHtml(post) {
         </div>
       </div>
     </div>
-      <div class="card-body">
+      <div class="card-body p-0">
         <img src="${post.media || "../src/img/Image_not_available.png"}" alt="${post.title}" class="card-img">
       </div>
-      <div class="row card-footer text-body-secondary m-0">
-        <div class="col-8">${post.body}</div>
-        <div class="col-4 reaction-section">
+      <div class="row card-footer p-1 text-body-secondary m-0 pt-2">
+        <div class="col-12 col-md-7 my-2 custom-text-font fs-5">${post.body}</div>
+        <div class="col-12 col-md-5 reaction-section text-center">
           <button type="button" class="reactionSymbol" id="reactThumbsUp_${post.id}">👍</button> <span>${thumbsUpCount}</span>
           <button type="button" class="reactionSymbol" id="reactThumbsDown_${post.id}">👎</button> <span>${thumbsDownCount}</span>
           <button type="button" class="reactionSymbol" id="reactHeart_${post.id}">❤️</button> <span>${heartCount}</span>
         </div>
-        <div class="col-12 comments-section">
-          <span id="postComments_${post.id}">Comments</span>
-          <div id="postCommentsBody_${post.id}" class="border text-center p-0">${commentsHtml}</div>
-          <form id="commentForm_${post.id}" data-post-id="${post.id}">
+        <div class="col-12 comments-section p-2">
+          <span class="custom-title-font fw-medium fs-5" id="postComments">Comments:</span>
+          <div id="postCommentsBody" class="p-1">${commentsHtml}</div>
+          <form id="commentForm" data-post-id="${post.id}">
             <div class="mt-3">
               <label for="commentTextArea_${post.id}" class="form-label">Comment</label>
-              <textarea class="form-control" id="commentTextArea_${post.id}" rows="2"></textarea>
+              <textarea class="form-control" id="commentTextArea" rows="2"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" id="commentSubmitBtn_${post.id}">Submit</button>
           </form>
