@@ -39,5 +39,3 @@ function defaultFormControl() {
 }
 
 export { defaultFormControl, setNewPostFormDataCallback };
-
-// Section for search form

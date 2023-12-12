@@ -18,10 +18,6 @@ $spinner-animation-speed: 1s;
   box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
-// .height-fit {
-//      height: 80vh;
-// }
-
 @media (max-width: 759px) {
   .mobile-sidebar {
     height: 100%;
@@ -63,16 +59,19 @@ $spinner-animation-speed: 1s;
 }
 
 .search-dropdown {
-  position: absolute;
   z-index: 1000;
-  width: 100%;
-  max-width: 22vh;
-  min-height: 50px;
   background-color: none;
   border: none;
-  top: 140px;
-  left: 15px;
   display: none;
+  color: $white;
+  max-width: 10%;
+}
+
+.offcanvas {
+  @extend .offcanvas;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
 }
 
 .dropdown-item {
@@ -118,4 +117,12 @@ $spinner-animation-speed: 1s;
 
 .custom-input {
   max-width: 50vh;
+}
+
+.custom-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  height: auto;
 }

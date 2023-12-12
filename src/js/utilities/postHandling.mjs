@@ -32,9 +32,6 @@ async function retrieveApiPostData(url) {
   }
 }
 
-// retrieveApiPostData(postsUrl);
-// export { retrieveApiPostData };
-
 function createPostHtml(post) {
   let thumbsUpCount = 0;
   let thumbsDownCount = 0;

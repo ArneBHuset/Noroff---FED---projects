@@ -1,14 +1,5 @@
 import { setSignUpFormDataCallback } from "./forms.mjs";
 
-/**
- * API call that registers the user
- * @param {string} url
- * @param {any} userFormData
- * ``` js
- * createAccount(registerURL, createAccountFormData);
- * ```
- */
-
 function wrappedCreateAccount() {
   // Section for getting the form data from forms.mjs
   let createAccountFormData = {};

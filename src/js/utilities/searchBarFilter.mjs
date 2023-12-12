@@ -7,7 +7,7 @@ function searchBarForm() {
     currentSearchBar.addEventListener("input", () => {
       const searchValue = currentSearchBar.value.trim();
       if (searchValue) {
-        searchDropdown.style.display = "block"; // Show the dropdown
+        searchDropdown.style.display = "block";
         filterAndDisplayPosts(searchValue, searchDropdown);
       } else {
         searchDropdown.style.display = "none";
