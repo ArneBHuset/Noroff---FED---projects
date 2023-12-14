@@ -18,13 +18,15 @@ function wrappedLogInUser() {
       if (json.accessToken) {
         localStorage.setItem("accessToken", json.accessToken);
         console.log("Login successful", json);
-        window.location.href = "/post&feed/post&feed.html";
+        window.location.href = "/postandfeed/postandfeed.html";
       } else {
         console.log("Login failed", json);
         alert("User not found");
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      const indexErrorDisplay = document.getElementById("indexErrorMessages");
+      indexErrorDisplay.innerHTML += `<p>!!! Error with login, contact site owner${error}</p>`;
+      // console.error("Error during login:", error);
     }
   }
 

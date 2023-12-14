@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap");
 
 .custom-title-font {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
 }
 .custom-text-font {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato", sans-serif !important;
 }
 
-$primary: #fff2f2;
-$secondary: black;
+$primary: #bc2a20;
+$secondary: #bc2a20;
 $success: green;
 $info: blue;
 $warning: orange;
@@ -48,9 +48,9 @@ $btn-color: blue;
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 .background-primary {
-  background-color: rgba(230, 241, 243, 0.3);
+  background: linear-gradient(rgba(25, 92, 94, 0.8), transparent);
 }
 
 .background-secondary {
-  background-color: rgba(25, 92, 94, 0.8) !important;
+  background-color: rgba(25, 92, 94, 0.9);
 }

@@ -25,7 +25,7 @@ function wrappedCreateAccount() {
   async function createAccount(url, userFormData) {
     try {
       const postData = {
-        method: "POST",
+        method: "POT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,15 +42,16 @@ function wrappedCreateAccount() {
       const json = await response.json();
       console.log(json);
 
-      // Trigger collapse state change upon successful account creation
+      // Trigger collapse state change upon successful account creation to make an understandable UI for user
       const signUpCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample2"));
       const logInCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample1"));
 
       signUpCollapse.show();
       logInCollapse.hide();
     } catch (error) {
-      console.log("Error in creating account", error);
-      alert("Account allready exists");
+      // console.log("Error in creating account", error);
+      const indexErrorDisplay = document.getElementById("indexErrorMessages2");
+      indexErrorDisplay.innerHTML += `<p><b>Account allready exists</b></br>Contact site owner if problem persists:${error}</p>`;
     }
   }
 

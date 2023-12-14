@@ -1,4 +1,5 @@
-import { setNewPostFormDataCallback } from "./newPostFormControl.mjs";
+import { setNewPostFormDataCallback } from "./new-post-form-control.mjs";
+import { loadPosts } from "./post-handling.mjs";
 
 let newPostFormData = {};
 let formDataPromiseResolve;
@@ -38,7 +39,10 @@ async function authenticateForNewPost(url, postData) {
 
     return await response.json();
   } catch (error) {
-    console.log("Error:", error.message);
+    // console.log("Error:", error.message);
+    const indexErrorDisplay = document.getElementById("newPostErrorMessage");
+    indexErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with creating post </br> contact site owner if problem persists${error}</p>`;
+
     return null;
   }
 }
@@ -51,10 +55,13 @@ async function createAndAddPost() {
     try {
       const response = await authenticateForNewPost(newPostUrl, newPostFormData);
       if (response) {
-        console.log("Post created!", response);
+        // console.log("Post created!", response);
+        loadPosts();
       }
     } catch (error) {
-      console.error("Failed to create post:", error);
+      // console.error("Failed to create post:", error);
+      const indexErrorDisplay = document.getElementById("newPostErrorMessage");
+      indexErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with creating post </br> contact site owner if problem persists${error}</p>`;
     }
   } else {
     console.log("No form data found");

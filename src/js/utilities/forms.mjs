@@ -22,7 +22,11 @@ function handleSignUpForm(event) {
   // Username Validation
   const userNameInput = document.getElementById("signUpUserName");
   const isValidUserName = /^[A-Za-z0-9_]+$/.test(userNameInput.value);
-  userNameInput.setCustomValidity(isValidUserName);
+  if (isValidUserName) {
+    userNameInput.setCustomValidity("");
+  } else {
+    userNameInput.setCustomValidity("Please enter a valid user name");
+  }
 
   // Email Validation
   const emailInput = document.getElementById("signUpEmail");
@@ -73,7 +77,6 @@ function handleLoginForm(event) {
     const logInEmail = document.getElementById("logInEmail").value;
     const logInPassword = document.getElementById("logInPassword").value;
     const loginData = { email: logInEmail, password: logInPassword };
-    // console.log("Forms.mjs logindata", loginData);
     loginFormDataCallback(loginData);
   } else {
     console.log("Form is invalid or callback not set");

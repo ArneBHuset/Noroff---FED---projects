@@ -53,11 +53,6 @@ $spinner-animation-speed: 1s;
   padding-left: 9px;
 }
 
-.custom-popover-btn {
-  background: none;
-  border: none;
-}
-
 .search-dropdown {
   z-index: 1000;
   background-color: none;
@@ -67,15 +62,9 @@ $spinner-animation-speed: 1s;
   max-width: 10%;
 }
 
-.offcanvas {
-  @extend .offcanvas;
-  position: sticky !important;
-  top: 0 !important;
-  z-index: 10 !important;
-}
-
 .dropdown-item {
   margin-bottom: 2px !important;
+  height: 50px;
 
   &:hover {
     text-decoration: underline;
@@ -113,6 +102,21 @@ $spinner-animation-speed: 1s;
   border-radius: 100px;
   height: 60px;
   width: 60px;
+
+  &:hover {
+    outline: 3px solid rgba($primary, 1);
+  }
+}
+
+.avatar-position {
+  position: relative;
+  top: 20px;
+  left: 10px;
+  height: 60px;
+  width: 60px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .custom-input {

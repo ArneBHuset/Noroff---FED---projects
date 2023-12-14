@@ -1,3 +1,5 @@
+import { attachCommentFormListeners, attachReactionListeners, attachUpdateFormListeners } from "./post-interaction.mjs";
+
 const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 
 async function retrieveApiPostData(url) {
@@ -18,7 +20,7 @@ async function retrieveApiPostData(url) {
     };
 
     const response = await fetch(url, getData);
-    console.log(response);
+    // console.log(response);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -89,7 +91,7 @@ function createPostHtml(post) {
         Delete
         </button>
         </div>
-        <div class="col-12 col-md-4 mt-4 ms-3 ms-md-0 custom-title-font post-profile-picture">${authorHtml}</div>
+        <div class="col-12 col-md-4 mt-4 ms-3 ms-md-0 custom-title-font post-profile-picture" id="postAuthor_${post.id}">${authorHtml}</div>
         <div class="col-12 col-md-8 mt-4  ms-3 ms-md-0 text-left custom-title-font fs-4 fw-medium" id="postTitle_${post.id}">${post.title}</div>
       </div>
       <div class="modal fade" id="exampleModal_${post.id}" tabindex="-1" aria-labelledby="exampleModalLabel_${post.id}" aria-hidden="true">
@@ -136,12 +138,12 @@ function createPostHtml(post) {
         <div class="col-12 comments-section p-2">
           <span class="custom-title-font fw-medium fs-5" id="postComments">Comments:</span>
           <div id="postCommentsBody" class="p-1">${commentsHtml}</div>
-          <form id="commentForm" data-post-id="${post.id}">
+          <form id="commentForm" class="comment-Form" type="post" data-post-id="${post.id}">
             <div class="mt-3">
               <label for="commentTextArea_${post.id}" class="form-label">Comment</label>
-              <textarea class="form-control" id="commentTextArea" rows="2"></textarea>
+              <textarea class="form-control commentTextArea" id="commentTextArea"_${post.id} rows="2"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" id="commentSubmitBtn_${post.id}">Submit</button>
+            <button type="submit" class="btn btn-primary" id="commentSubmitBtn_${post.id}">Add comment</button>
           </form>
         </div>
         <div class="col-12">
@@ -164,16 +166,20 @@ export const dynamicallyInsertedPostsPromise = new Promise((resolve) => {
 let currentFilters = { tagFilter: "", includeAuthor: true, includeComments: true, includeReactions: true };
 
 async function dynamicallyInsertedPosts({ tagFilter = "", includeAuthor = true, includeComments = true, includeReactions = true }) {
+  tagFilter = tagFilter.trim();
+
   if (JSON.stringify(currentFilters) === JSON.stringify({ includeAuthor, includeComments, includeReactions })) {
     return;
   }
+
+  console.log("Running dynamicallyInsertedPosts");
   currentFilters = { tagFilter, includeAuthor, includeComments, includeReactions };
 
   const loadingSpinner = document.getElementById("spinner");
   loadingSpinner.classList.remove("d-none");
   loadingSpinner.classList.add("d-flex");
 
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  await new Promise((resolve) => setTimeout(resolve, 0));
 
   let postsUrl = `${API_BASE_URL}/social/posts/`;
   const queryParams = [];
@@ -198,25 +204,18 @@ async function dynamicallyInsertedPosts({ tagFilter = "", includeAuthor = true, 
     console.log("ERROR with dynamic posts");
     postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR! Cannot retrieve any posts, please reload or come back later</h5>`;
   }
-  resolveDynamicallyInsertedPosts();
+  console.log("listerners reloaded in Dynamicallinsertespostss!");
+  attachCommentFormListeners();
+  attachReactionListeners();
+  attachUpdateFormListeners();
 }
 
-// Running posts without any filters to begin with
-dynamicallyInsertedPosts({
-  tagFilter: "",
-  isActive: true,
-  includeAuthor: true,
-  includeComments: true,
-  includeReactions: true,
-});
-
-function filteringOptions() {
+async function filteringOptionsUpdate() {
   const updateFiltersAndPosts = () => {
     const tagInput = document.getElementById("tagsInputValue").value;
     const includeAuthor = document.getElementById("authorFiltering").checked;
     const includeComments = document.getElementById("commentsFiltering").checked;
     const includeReactions = document.getElementById("reactionsFiltering").checked;
-
     dynamicallyInsertedPosts({ tagFilter: tagInput, includeAuthor, includeComments, includeReactions });
   };
 
@@ -225,7 +224,12 @@ function filteringOptions() {
   document.getElementById("commentsFiltering").addEventListener("change", updateFiltersAndPosts);
   document.getElementById("reactionsFiltering").addEventListener("change", updateFiltersAndPosts);
 }
+async function loadPosts() {
+  dynamicallyInsertedPosts(currentFilters);
+  attachCommentFormListeners();
+  attachReactionListeners();
+  attachUpdateFormListeners();
+  console.log("Load posts functino has ran");
+}
 
-filteringOptions();
-
-export { dynamicallyInsertedPosts };
+export { dynamicallyInsertedPosts, filteringOptionsUpdate, loadPosts };
