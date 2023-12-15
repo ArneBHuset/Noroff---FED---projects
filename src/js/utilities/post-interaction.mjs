@@ -1,7 +1,5 @@
 import { loadPosts } from "./post-handling.mjs";
-
-const API_BASE_URL = `https://api.noroff.dev/api/v1`;
-
+import { API_BASE_URL } from "./global-values.mjs";
 async function commonApiRequest(url, method, data = null) {
   try {
     const token = localStorage.getItem("accessToken");
@@ -32,6 +30,8 @@ async function commonApiRequest(url, method, data = null) {
     return await response.json();
   } catch (error) {
     console.error("API Request Error:", error.message);
+    const postsContainer = document.getElementById("postsGeneralError");
+    postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR! Cannot retrieve any posts, please reload or come back later ${error}</h5>`;
     return null;
   }
 }
@@ -43,7 +43,6 @@ async function updatePost(postId, updatedPostData) {
 
 async function handleUpdateFormSubmit(event, postId) {
   event.preventDefault();
-  console.log("UpdateForm is running!");
   const form = event.target;
   const updateTitle = form.querySelector("#updateTitleInput").value;
   const updateBody = form.querySelector("#updatePostTextarea").value;
@@ -58,13 +57,13 @@ async function handleUpdateFormSubmit(event, postId) {
 
   if (Object.keys(updatePostData).length > 0) {
     await updatePost(postId, updatePostData);
-    console.log(`Updated post ${postId}`, updatePostData);
+    // console.log(`Updated post ${postId}`, updatePostData);
     loadPosts();
     const modalElement = document.querySelector(`#exampleModal_${postId}`);
     const modalInstance = bootstrap.Modal.getInstance(modalElement);
     modalInstance.hide();
   } else {
-    console.log("No changes to update");
+    // console.log("No changes to update");
   }
 }
 
@@ -91,17 +90,18 @@ async function handleReactionClick(event) {
     if (emojiSymbol && postId) {
       try {
         const response = await reactToPost(postId, emojiSymbol);
-        console.log("Reaction response:", response);
+        // console.log("Reaction response:", response);
         loadPosts();
       } catch (error) {
         console.error("Error reacting to post:", error);
+        const postsContainer = document.getElementById("postsGeneralError");
+        postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR with reactions, please reload or come back later ${error}</h5>`;
       }
     }
   }
 }
 
 async function reactToPost(postId, symbol) {
-  console.log("running");
   const url = `${API_BASE_URL}/social/posts/${postId}/react/${symbol}`;
   return commonApiRequest(url, "PUT");
 }
@@ -114,7 +114,6 @@ function attachReactionListeners() {
 attachReactionListeners();
 
 async function handleCommentFormSubmit(event) {
-  console.log("runningComment!!!!!!!!!!!!!!!!!!!!!!!!!!");
   event.preventDefault();
   const form = event.target;
   const postId = form.getAttribute("data-post-id");
@@ -127,15 +126,16 @@ async function handleCommentFormSubmit(event) {
 
     try {
       const response = await commonApiRequest(url, "POST", data);
-      console.log("Comment added:", response);
+      // console.log("Comment added:", response);
       loadPosts();
     } catch (apiError) {
       console.error("Failed to post comment:", apiError);
+      const postsContainer = document.getElementById("postsGeneralError");
+      postsContainer.innerHTML = `<h5 class="d-flex justify-content-center text-warning text-center">ERROR with commenting, please reload or come back later ${error}</h5>`;
     }
   } else {
-    console.log("Waiting for comment");
+    // console.log("Waiting for comment");
   }
-  console.log("END OF ALL ROADS");
 }
 
 function attachCommentFormListeners() {
@@ -144,7 +144,6 @@ function attachCommentFormListeners() {
     form.removeEventListener("submit", handleCommentFormSubmit);
     form.addEventListener("submit", handleCommentFormSubmit);
   });
-  console.log("attachCommentFormListeners running END");
 }
 
 export { attachCommentFormListeners, attachReactionListeners, attachUpdateFormListeners };

@@ -1,9 +1,6 @@
 $offcanvas-box-shadow: 5px 0px 5px 5px rgba(0, 0, 0, 0.5);
 $offcanvas-bg-color: rgb(224, 224, 224);
-// $offcanvas-color: ;
-// $offcanvas-transition-duration: 0.3s;
 $offcanvas-horizontal-width: 80vw;
-
 $spinner-width: 8rem;
 $spinner-height: $spinner-width;
 $spinner-vertical-align: -0.125em;
@@ -112,16 +109,16 @@ $spinner-animation-speed: 1s;
 @media (max-width: 759px) {
   .profile-picture {
     border-radius: 100px;
-    height: 50px;
-    width: 50px;
-    margin-right: 5%;
+    height: 60px;
+    width: 60px;
+    margin-right: 5px;
   }
 }
 
 .avatar-position {
   position: relative;
-  top: 20px;
-  left: 5px;
+  top: 17px;
+  left: 0px;
   height: 80px;
   width: 80px;
   background-color: transparent;
@@ -139,4 +136,10 @@ $spinner-animation-speed: 1s;
   width: 100%;
   height: 50px;
   height: auto;
+}
+
+@media (min-width: 759px) {
+  .custom-form-width {
+    max-width: 70%;
+  }
 }

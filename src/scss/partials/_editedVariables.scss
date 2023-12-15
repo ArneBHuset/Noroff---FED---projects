@@ -8,29 +8,15 @@
 }
 
 $primary: #bc2a20;
-$secondary: #bc2a20;
+$secondary: #eeb2ad;
+
 $success: green;
 $info: blue;
 $warning: orange;
 $danger: red;
-
-// $link-color: $primary !default;
-// $link-decoration: underline !default;
-// $link-shade-percentage: 20% !default;
-// $link-hover-color: shift-color($link-color, $link-shade-percentage) !default;
-// $link-hover-decoration: null !default;
-
-// $h1-font-size: $font-size-base * 2.5 !default;
-// $h2-font-size: $font-size-base * 2 !default;
-// $h3-font-size: $font-size-base * 1.75 !default;
-// $h4-font-size: $font-size-base * 1.5 !default;
-// $h5-font-size: $font-size-base * 1.25 !default;
-// $h6-font-size: $font-size-base !default;
-
-$btn-hover-bg-shade-amount: 55%;
 $btn-hover-bg-tint-amount: 15%;
 $btn-hover-border-shade-amount: 20%;
-$btn-hover-border-tint-amount: 10%;
+$btn-hover-border-tint-amount: 30%;
 $btn-active-bg-shade-amount: 20%;
 $btn-active-bg-tint-amount: 20%;
 $btn-active-border-shade-amount: 25%;
@@ -38,12 +24,6 @@ $btn-active-border-tint-amount: 10%;
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 $btn-color: blue;
-// $btn-padding-y: $input-btn-padding-y;
-// $btn-padding-x: $input-btn-padding-x;
-// $btn-font-family: $input-btn-font-family;
-// $btn-font-size: $input-btn-font-size;
-// $btn-line-height: $input-btn-line-height;
-// $btn-white-space: null; // Set to `nowrap` to prevent text wrapping'
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 

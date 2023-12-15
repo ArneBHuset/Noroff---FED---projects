@@ -7,20 +7,20 @@ function wrappedCreateAccount() {
 
   function handleFormData(data) {
     createAccountFormData = data;
-    console.log("createAccount.mjs", createAccountFormData);
-    // Function for creating account to be run after form handling is complete.
-    // If/else statement to check that there actually is a ready form data.
     if (Object.keys(createAccountFormData).length > 0) {
       createAccount(registerURL, createAccountFormData);
-    } else {
-      // WHy does not the else run?
-      console.log("Waiting for signup details");
     }
   }
 
   setSignUpFormDataCallback(handleFormData);
 
-  // Section for actual JWT create account function
+  /**
+   * Handles the API call for account creation. This function sends the user's input data to the specified URL for account registration and validation.
+   *
+   * @param {string} url - The API endpoint for account creation. This should be the base URL combined with '/social/auth/register'.
+   * @param {object} userFormData - The user's input data. This should include all necessary information required for account creation, such as username, email, and password.
+   * @returns {Promise<object>} A promise that resolves with the response from the API call.
+   */
   async function createAccount(url, userFormData) {
     try {
       const postData = {
@@ -32,14 +32,14 @@ function wrappedCreateAccount() {
       };
 
       const response = await fetch(url, postData);
-      console.log(response);
+      // console.log(response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
 
       // Trigger collapse state change upon successful account creation to make an understandable UI for user
       const signUpCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample2"));
@@ -48,7 +48,7 @@ function wrappedCreateAccount() {
       signUpCollapse.show();
       logInCollapse.hide();
     } catch (error) {
-      // console.log("Error in creating account", error);
+      console.log("Error in creating account", error);
       const indexErrorDisplay = document.getElementById("indexErrorMessages2");
       indexErrorDisplay.innerHTML += `<p><b>Account allready exists</b></br>Contact site owner if problem persists:${error}</p>`;
     }

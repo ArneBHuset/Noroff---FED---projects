@@ -14,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// >>>>>>Section for the signup<<<<<<<<<<
+/**
+ * Handles the input fields for creating a new account and validates the inputs before sending callback to create-account.mjs
+ *
+ * @param {any} event - Event triggered by submit button.
+ */
 function handleSignUpForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -49,7 +53,7 @@ function handleSignUpForm(event) {
     };
     signUpFormDataCallback(userData);
   } else {
-    console.log("Form is invalid or callback not set");
+    // console.log("Form is invalid or callback not set");
   }
 
   form.classList.add("was-validated");
@@ -69,6 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+/**
+ * Handles the input fields for logging in and validates the inputs before sending callback to log-in.mjs
+ *
+ * @param {any} event - Event triggered by submit button.
+ */
 function handleLoginForm(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -79,7 +88,7 @@ function handleLoginForm(event) {
     const loginData = { email: logInEmail, password: logInPassword };
     loginFormDataCallback(loginData);
   } else {
-    console.log("Form is invalid or callback not set");
+    // console.log("Form is invalid or callback not set");
   }
   form.classList.add("was-validated");
 }

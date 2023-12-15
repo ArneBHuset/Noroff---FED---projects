@@ -30,7 +30,6 @@ function searchBarForm() {
     });
   }
   function showAllPosts() {
-    console.log("reset begins");
     const posts = document.querySelectorAll(".custom-card");
     posts.forEach((post) => {
       post.style.display = "flex";
@@ -94,12 +93,9 @@ function searchBarForm() {
     const postElement = document.getElementById(postId);
     if (postElement) {
       postElement.scrollIntoView({ behavior: "smooth" });
-    } else {
-      console.log("Post not found:", postId);
     }
   }
   function applyPostFiltering(filteredPostIds) {
-    console.log("Filtering posts!");
     const posts = Array.from(document.querySelectorAll(".custom-card"));
     posts.forEach((post) => {
       const postId = post.id;

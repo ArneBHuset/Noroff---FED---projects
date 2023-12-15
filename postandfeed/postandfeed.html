@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Post and Feed page</title>
+    <link rel="icon" href="../src/img/png/logo-no-background.png" width="16" height="16" type="image/x-icon" />
     <link rel="stylesheet" href="../dist/css/main.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,-25" />
-    <!-- <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
   </head>
   <body>
     <div class="mw-100">
@@ -29,11 +29,9 @@
             >
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse custom-title-font fs-5 fw-medium mt-2" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-md-5 ps-md-5 ms-4">
-                <li class="nav-item">
-                  <a class="nav-link active ms-md-5" aria-current="page" href="#">Home</a>
-                </li>
+                <button class="nav-link ms-md-5" type="button" data-bs-toggle="modal" data-bs-target="#uniqueExampleModal" tabindex="1">Profile</button>
                 <li class="nav-item">
                   <a class="nav-link ms-md-5" href="#">Link</a>
                 </li>
@@ -86,7 +84,7 @@
             </nav>
           </div>
           <div class="col-11 col-md-9">
-            <div class="container-fluid px-md-5 px-0">
+            <div class="container-fluid p-0 p-md-5 pt-md-0">
               <div></div>
               <div class="row">
                 <div class="col-12">
@@ -95,32 +93,33 @@
                       <!-- Trigger Button -->
                       <div id="insertedProfileModal"></div>
 
-                      <form class="needs-validation w-100 px-md-5" novalidate>
+                      <form class="needs-validation custom-form-width px-md-5" novalidate>
                         <div class="row mt-4">
                           <span id="newPostErrorMessage"></span>
                           <div class="col-10 m-0">
-                            <label for="titleInput" class="form-label">Title</label>
+                            <label for="titleInput" class="form-label custom-title-font fs-5 fw-medium">Title</label>
                             <input type="text" class="form-control" id="titleInput" required />
                             <div class="invalid-feedback">Please provide a title.</div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="postTextarea" class="form-label">Post</label>
+                            <label for="postTextarea" class="form-label custom-title-font fs-5 fw-medium">Post</label>
                             <textarea class="form-control" id="postTextarea" rows="3"></textarea>
                           </div>
 
                           <div class="mb-3">
-                            <label for="fileInput" class="form-label">Upload File/Picture/Video</label>
+                            <label for="fileInput" class="form-label custom-title-font fs-5 fw-medium">Add image url</label>
                             <input type="text" class="form-control" id="fileInput" value="https://shorturl.at/clzF0" />
                             <div class="invalid-feedback">Please upload a file.</div>
                           </div>
 
                           <div class="mb-3">
-                            <label for="tagsInput" class="form-label">Tags</label>
+                            <label for="tagsInput" class="form-label custom-title-font fs-5 fw-medium">Tags</label>
                             <input type="text" class="form-control" id="tagsInput" placeholder="Add tags separated by commas" />
                           </div>
-
-                          <button type="submit" class="btn btn-primary">Post!</button>
+                          <div>
+                            <button type="submit" class="btn btn-primary custom-title-font fs-5 fw-medium">Post!</button>
+                          </div>
                         </div>
                       </form>
                     </div>
@@ -131,25 +130,25 @@
                       </div>
                       <div class="col-12 border-bottom border-2 border-primary py-3">
                         <h5 class="custom-title-font text-center">Filter out</h5>
-                        <div class="custom-text-font d-flex justify-content-center ms-md-0 ms-5">
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="authorFiltering">Author</label>
-                            <input class="form-check-input" type="checkbox" id="authorFiltering" checked />
+                        <div class="custom-title-font d-flex justify-content-center ms-md-0 ms-5">
+                          <div class="form-check form-check-inline pe-md-4">
+                            <label class="form-check-label fs-5" for="authorFiltering">Author</label>
+                            <input class="form-check-input fs-5" type="checkbox" id="authorFiltering" checked />
                           </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="commentsFiltering">Comments</label>
-                            <input class="form-check-input" type="checkbox" id="commentsFiltering" checked />
+                          <div class="form-check form-check-inline pe-md-4">
+                            <label class="form-check-label fs-5" for="commentsFiltering">Comments</label>
+                            <input class="form-check-input fs-5" type="checkbox" id="commentsFiltering" checked />
                           </div>
-                          <div class="form-check form-check-inline">
-                            <label class="form-check-label" for="reactionsFiltering">Reactions</label>
-                            <input class="form-check-input" type="checkbox" id="reactionsFiltering" checked />
+                          <div class="form-check form-check-inline pe-md-4">
+                            <label class="form-check-label fs-5" for="reactionsFiltering">Reactions</label>
+                            <input class="form-check-input fs-5" type="checkbox" id="reactionsFiltering" checked />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 p-0 p-md-3 pt-0">
                   <span id="postsGeneralError"></span>
                   <div class="d-flex justify-content-center">
                     <div id="spinner" class="d-flex spinner-border text-secondary" role="status" style="display: none">
@@ -163,7 +162,7 @@
           </div>
         </div>
       </main>
-      <footer class="bg-primary custom-footer">
+      <footer class="bg-secondary custom-footer">
         <span class="custom-title-font fs-5 text-primary">©Arne</span>
       </footer>
     </div>

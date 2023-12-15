@@ -1,5 +1,6 @@
 import { setNewPostFormDataCallback } from "./new-post-form-control.mjs";
 import { loadPosts } from "./post-handling.mjs";
+import { API_BASE_URL } from "./global-values.mjs";
 
 let newPostFormData = {};
 let formDataPromiseResolve;
@@ -12,8 +13,6 @@ function handleNewPostFormData(data) {
 }
 
 setNewPostFormDataCallback(handleNewPostFormData);
-
-const API_BASE_URL = `https://api.noroff.dev/api/v1`;
 
 async function authenticateForNewPost(url, postData) {
   try {
@@ -39,14 +38,16 @@ async function authenticateForNewPost(url, postData) {
 
     return await response.json();
   } catch (error) {
-    // console.log("Error:", error.message);
+    console.log("Error:", error.message);
     const indexErrorDisplay = document.getElementById("newPostErrorMessage");
     indexErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with creating post </br> contact site owner if problem persists${error}</p>`;
 
     return null;
   }
 }
-
+/**
+ *Function that takes data from new-post-form-control and creates new post using API call in authenticateForNewPost
+ */
 async function createAndAddPost() {
   await formDataPromise;
 
@@ -59,12 +60,12 @@ async function createAndAddPost() {
         loadPosts();
       }
     } catch (error) {
-      // console.error("Failed to create post:", error);
+      console.error("Failed to create post:", error);
       const indexErrorDisplay = document.getElementById("newPostErrorMessage");
       indexErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with creating post </br> contact site owner if problem persists${error}</p>`;
     }
   } else {
-    console.log("No form data found");
+    // console.log("No form data found");
   }
 }
 

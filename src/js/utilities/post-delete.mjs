@@ -1,6 +1,5 @@
 import { loadPosts } from "./post-handling.mjs";
-
-const API_BASE_URL = `https://api.noroff.dev/api/v1`;
+import { API_BASE_URL } from "./global-values.mjs";
 
 async function authenticateForDeletion(url) {
   try {
@@ -27,7 +26,7 @@ async function authenticateForDeletion(url) {
     console.log("Post deleted successfully");
     return response;
   } catch (error) {
-    // console.log("Error:", error.message);
+    console.log("Error:", error.message);
     const DeleteErrorDisplay = document.getElementById("postsGeneralError");
     DeleteErrorDisplay.innerHTML += `<p class="text-warning text-center">!!! Error with deleting post</br>contact site owner if problem persists${error}</p>`;
     return null;
@@ -45,7 +44,7 @@ function postDeletion() {
         const deleteUrl = `${API_BASE_URL}/social/posts/${postId}`;
         authenticateForDeletion(deleteUrl)
           .then(() => {
-            console.log(`Post ${postId} deleted`);
+            // console.log(`Post ${postId} deleted`);
             loadPosts();
           })
           .catch((error) => {

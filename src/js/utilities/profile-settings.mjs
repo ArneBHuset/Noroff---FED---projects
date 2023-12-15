@@ -1,4 +1,12 @@
 import { API_BASE_URL } from "./global-values.mjs";
+
+/**
+ * Function handling API call for either profile update or profile information
+ 
+ * @param {string} url - Base url combined with /social/profiles/${profileName}/media or /social/profiles/${profileName}`;
+ * @param {string} method - Either GET for profile information or PUT for profile update
+ * @param {object} data - data included if PUT profile update is called 
+ */
 async function profileApiCall(url, method, data = null) {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -11,7 +19,7 @@ async function profileApiCall(url, method, data = null) {
       body: data ? JSON.stringify(data) : null,
     };
     const response = await fetch(url, postData);
-    console.log(response);
+    // console.log(response);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -34,8 +42,8 @@ async function profileDetails() {
       profileModalHtml(profileData);
     }
   } catch (error) {
-    console.error("Error fetching profile details:", error);
-    // Handle error appropriately
+    const updateErrorDisplay = document.getElementById("newPostErrorMessage");
+    updateErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with profile<br>Contact site owner if problem persists: ${error}</p>`;
   }
 }
 
@@ -56,7 +64,8 @@ async function profileUpdate(avatarUrl, bannerUrl) {
     location.reload();
   } catch (error) {
     console.error("Error updating profile:", error);
-    // Handle error appropriately
+    const updateErrorDisplay = document.getElementById("newPostErrorMessage");
+    updateErrorDisplay.innerHTML += `<p class="text-warning">!!! Error with profile<br>Contact site owner if problem persists: ${error}</p>`;
   }
 }
 
@@ -76,6 +85,11 @@ function profileUpdateForm() {
   }
 }
 
+/**
+ * Profile picture and modal button with content inserted, if API call for profile details is good
+ 
+ * @param {object} profileData - JSON Data from profile, fetched fomr the API call
+ */
 function profileModalHtml(profileData) {
   if (!profileData) {
     return;
@@ -88,7 +102,7 @@ function profileModalHtml(profileData) {
         <div class="modal-content background-primary">
           <!-- Modal header -->
           <div class="modal-header">
-            <h1 id="uniqueExampleModalLabel" class="custom-title-font fs-4 fw-bold ms-5">Your profile</h1>
+            <h1 id="uniqueExampleModalLabel" class="custom-title-font fs-4 fw-bold ms-4 mt-1">Your profile</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
