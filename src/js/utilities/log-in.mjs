@@ -17,6 +17,7 @@ function wrappedLogInUser() {
       const json = await response.json();
       if (json.accessToken) {
         localStorage.setItem("accessToken", json.accessToken);
+        localStorage.setItem("userName", json.name);
         console.log("Login successful", json);
         window.location.href = "/postandfeed/postandfeed.html";
       } else {

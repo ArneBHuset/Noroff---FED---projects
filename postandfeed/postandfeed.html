@@ -62,8 +62,8 @@
           </div>
         </nav>
       </header>
-      <main class="container-fluid ps-0 w-100 h-100 bg-white">
-        <div class="row mx-0 h-100">
+      <main class="container-fluid p-0 w-100 h-100 bg-white">
+        <div class="row mx-0 h-100 w-100">
           <div class="col-1 col-md-3 mobile-sidebar custom-sidebar p-0 background-secondary">
             <button class="custom-navbar-toggler h-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
               <span class="material-symbols-outlined">sort</span>
@@ -86,15 +86,15 @@
             </nav>
           </div>
           <div class="col-11 col-md-9">
-            <div class="container-fluid px-md-5">
+            <div class="container-fluid px-md-5 px-0">
               <div></div>
               <div class="row">
                 <div class="col-12">
                   <div class="mb-5">
                     <div class="d-flex gap-1 gap-md-5">
-                      <button class="avatar-position">
-                        <img src="../src/img/avatar.jpg" class="profile-picture mt-4" id="personalProfileImg" />
-                      </button>
+                      <!-- Trigger Button -->
+                      <div id="insertedProfileModal"></div>
+
                       <form class="needs-validation w-100 px-md-5" novalidate>
                         <div class="row mt-4">
                           <span id="newPostErrorMessage"></span>

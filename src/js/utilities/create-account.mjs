@@ -1,4 +1,5 @@
 import { setSignUpFormDataCallback } from "./forms.mjs";
+import { API_BASE_URL } from "./global-values.mjs";
 
 function wrappedCreateAccount() {
   // Section for getting the form data from forms.mjs
@@ -20,12 +21,10 @@ function wrappedCreateAccount() {
   setSignUpFormDataCallback(handleFormData);
 
   // Section for actual JWT create account function
-  const API_BASE_URL = `https://api.noroff.dev/api/v1`;
-
   async function createAccount(url, userFormData) {
     try {
       const postData = {
-        method: "POT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

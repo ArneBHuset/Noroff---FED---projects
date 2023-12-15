@@ -100,20 +100,30 @@ $spinner-animation-speed: 1s;
 
 .profile-picture {
   border-radius: 100px;
-  height: 60px;
-  width: 60px;
+  height: 110px;
+  width: 110px;
 
   &:hover {
     outline: 3px solid rgba($primary, 1);
+    box-shadow: 1px 0px 3px 1px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (max-width: 759px) {
+  .profile-picture {
+    border-radius: 100px;
+    height: 50px;
+    width: 50px;
+    margin-right: 5%;
   }
 }
 
 .avatar-position {
   position: relative;
   top: 20px;
-  left: 10px;
-  height: 60px;
-  width: 60px;
+  left: 5px;
+  height: 80px;
+  width: 80px;
   background-color: transparent;
   border: none;
   cursor: pointer;

@@ -5,6 +5,7 @@ import { searchBarForm } from "./utilities/search-bar.mjs";
 import { signOut } from "./utilities/sign-out.mjs";
 import { filteringOptionsUpdate } from "./utilities/post-handling.mjs";
 import { loadPosts } from "./utilities/post-handling.mjs";
+import { profileModalHtml, profileDetails, profileUpdateForm } from "./utilities/profile-settings.mjs";
 
 filteringOptionsUpdate();
 loadPosts();
@@ -13,3 +14,6 @@ createAndAddPost();
 postDeletion();
 searchBarForm();
 signOut();
+profileModalHtml();
+profileDetails();
+profileUpdateForm();
