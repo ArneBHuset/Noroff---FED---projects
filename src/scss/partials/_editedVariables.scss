@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@400;700&display=swap");
+
+.custom-title-font {
+  font-family: "Montserrat", sans-serif !important;
+}
+.custom-text-font {
+  font-family: "Lato", sans-serif !important;
+}
+
+$primary: #bc2a20;
+$secondary: #eeb2ad;
+
+$success: green;
+$info: blue;
+$warning: orange;
+$danger: red;
+$btn-hover-bg-tint-amount: 15%;
+$btn-hover-border-shade-amount: 20%;
+$btn-hover-border-tint-amount: 30%;
+$btn-active-bg-shade-amount: 20%;
+$btn-active-bg-tint-amount: 20%;
+$btn-active-border-shade-amount: 25%;
+$btn-active-border-tint-amount: 10%;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+$btn-color: blue;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.background-primary {
+  background: linear-gradient(rgba(25, 92, 94, 0.8), transparent);
+}
+
+.background-secondary {
+  background-color: rgba(25, 92, 94, 0.9);
+}

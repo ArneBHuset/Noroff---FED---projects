@@ -1,0 +1,23 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.custom-height {
+  height: 100%;
+}
+
+@media (min-width: 760px) {
+  .main-width {
+    width: 50%;
+  }
+}
+
+.custom-fixed-height {
+  height: 330px;
+}
+
+.custom-fixed-lower {
+  height: 550px;
+}
+
+.logo-front-page {
+  height: 50%;
+}
