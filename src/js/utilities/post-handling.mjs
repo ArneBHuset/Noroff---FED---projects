@@ -125,7 +125,7 @@ function createPostHtml(post) {
               </div>
               <div class="mb-3">
                 <label for="updateFileInput custom-title-font fs-5" class="form-label">Update picture/video</label>
-                <input type="text" class="form-control" id="updateFileInput" value="https://shorturl.at/lnryW" />
+                <input type="text" class="form-control" id="updateFileInput"/>
               </div>
               <div class="mb-3">
                 <label for="updateTagsInput custom-title-font fs-5" class="form-label">Tags</label>

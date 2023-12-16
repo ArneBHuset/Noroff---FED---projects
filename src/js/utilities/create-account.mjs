@@ -32,21 +32,19 @@ function wrappedCreateAccount() {
       };
 
       const response = await fetch(url, postData);
-      // console.log(response);
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const json = await response.json();
-      // console.log(json);
-
       // Trigger collapse state change upon successful account creation to make an understandable UI for user
       const signUpCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample2"));
       const logInCollapse = new bootstrap.Collapse(document.getElementById("multiCollapseExample1"));
 
       signUpCollapse.show();
       logInCollapse.hide();
+      const indexErrorDisplay = document.getElementById("indexErrorMessages");
+      indexErrorDisplay.innerHTML += `<p class="custom-title-font fs-5">New account successfully created!</p>`;
     } catch (error) {
       console.log("Error in creating account", error);
       const indexErrorDisplay = document.getElementById("indexErrorMessages2");

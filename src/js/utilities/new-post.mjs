@@ -9,7 +9,6 @@ let formDataPromise = new Promise((resolve) => (formDataPromiseResolve = resolve
 function handleNewPostFormData(data) {
   newPostFormData = data;
   formDataPromiseResolve();
-  console.log("newPost.mjs received data!", newPostFormData);
 }
 
 setNewPostFormDataCallback(handleNewPostFormData);
@@ -56,7 +55,6 @@ async function createAndAddPost() {
     try {
       const response = await authenticateForNewPost(newPostUrl, newPostFormData);
       if (response) {
-        // console.log("Post created!", response);
         loadPosts();
       }
     } catch (error) {

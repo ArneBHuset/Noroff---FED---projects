@@ -25,7 +25,6 @@ async function profileApiCall(url, method, data = null) {
     }
 
     const json = await response.json();
-    console.log(json);
     return json;
   } catch (error) {
     const updateErrorDisplay = document.getElementById("newPostErrorMessage");
@@ -95,7 +94,7 @@ function profileModalHtml(profileData) {
     return;
   }
   const modalHtml = ` <button class="avatar-position mt-4" type="button" data-bs-toggle="modal" data-bs-target="#uniqueExampleModal" tabindex="1">
-  <img src="${profileData.avatar} || "../src/img/Image_not_available.png"}" class="profile-picture" id="personalProfileImg" />
+  <img src="${profileData.avatar || "../src/img/avatar.jpg"}" class="profile-picture" id="personalProfileImg" />
     </button>
     <div class="modal fade" id="uniqueExampleModal" tabindex="-1" aria-labelledby="uniqueExampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -107,10 +106,10 @@ function profileModalHtml(profileData) {
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-4">
-                <img src="${profileData.avatar}" class="profile-picture ms-3" id="personalProfileImg" />
+              <div class="col-md-4 col-3 p-1">
+                <img src="${profileData.avatar || "../src/img/avatar.jpg"}" class="profile-picture ms-md-3" id="personalProfileImg" />
               </div>
-              <div class="col-8 custom-title-font fs-5 bold text.center mt-0 mt-md-3">
+              <div class="col-md-8 col-9 custom-title-font bold text.center mt-0 mt-md-3">
                 <span id="profileName" class="">Name: ${profileData.name}</span>
                 <span id="profileEmail" class="">Email: ${profileData.email}</span>
               </div>
@@ -118,7 +117,7 @@ function profileModalHtml(profileData) {
               <span class="fs-4 custom-title-font mt-2">Your banner</span>
               </div>
               <div class="col-4">
-              <img src="${profileData.banner}" id="profileBanner" class="profile-picture  mt-3"/>
+              <img src="${profileData.banner || "../src/img/Image_not_available.png"}" id="profileBanner" class="profile-picture  mt-3"/>
               </div>
               <div class="col-12 custom-text-font d-flex gap-3 mt-2 ms-3">
                 <span id="profilePostsCount" class="">Posts: ${profileData._count.posts}</span>

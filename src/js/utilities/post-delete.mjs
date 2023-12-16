@@ -39,8 +39,6 @@ function postDeletion() {
     while (clickedElement) {
       if (clickedElement.className.includes("deletePostBtn")) {
         const postId = clickedElement.id;
-        console.log("Delete button clicked for post ID:", postId);
-
         const deleteUrl = `${API_BASE_URL}/social/posts/${postId}`;
         authenticateForDeletion(deleteUrl)
           .then(() => {
